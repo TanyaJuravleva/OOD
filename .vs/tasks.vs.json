@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "задача-task_01",
+      "appliesTo": "lab_01/task_01/",
+      "type": "launch"
+    }
+  ]
+}
