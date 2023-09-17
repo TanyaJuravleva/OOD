@@ -1,7 +1,7 @@
-//#include "CSqueak.h"
-//#include <iostream>
-//
-//void CSqueak::Quack() const
-//{
-//	std::cout << "Пищит" << std::endl;
-//}
+#include "CSqueak.h"
+#include <iostream>
+
+void CSqueak::Quack()
+{
+	std::cout << "Пищит" << std::endl;
+}

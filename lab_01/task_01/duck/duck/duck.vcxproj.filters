@@ -24,7 +24,7 @@
     <ClInclude Include="IFlyBehavior.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="СFlyWithWings.h">
+    <ClInclude Include="CFlyWithWings.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="СFlyNoWay.h">
@@ -53,7 +53,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="СFlyWithWings.cpp">
+    <ClCompile Include="CFlyWithWings.cpp">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
     <ClCompile Include="СFlyNoWay.cpp">

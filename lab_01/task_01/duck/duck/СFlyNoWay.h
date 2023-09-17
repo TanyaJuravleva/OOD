@@ -4,8 +4,5 @@
 
 class ÑFlyNoWay : IFlyBehavior
 {
-	ÑFlyNoWay()
-	{
-		std::cout << "Íå ëåòàåò" << std::endl;
-	}
+	void Fly() override;
 };

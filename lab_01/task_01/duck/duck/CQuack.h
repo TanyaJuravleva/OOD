@@ -4,8 +4,5 @@
 
 class CQuack : IQuackBehavior
 {
-	CQuack()
-	{
-		std::cout << "Крякает" << std::endl;
-	}
+	void Quack() override;
 };

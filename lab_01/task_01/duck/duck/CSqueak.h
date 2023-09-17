@@ -4,8 +4,5 @@
 
 class CSqueak : IQuackBehavior
 {
-	CSqueak()
-	{
-		std::cout << "Пищит" << std::endl;
-	}
+	void Quack() override;
 };

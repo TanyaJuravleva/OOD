@@ -4,8 +4,5 @@
 
 class CMuteQuack : IQuackBehavior
 {
-	CMuteQuack()
-	{
-		std::cout << "Не крякает" << std::endl;
-	}
+	void Quack() override;
 };

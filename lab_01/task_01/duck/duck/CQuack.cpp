@@ -1,7 +1,7 @@
-//#include "CQuack.h"
-//#include <iostream>
-//
-//void CQuack::Quack() const
-//{
-//	std::cout << "Крякает" << std::endl;
-//}
+#include "CQuack.h"
+#include <iostream>
+
+void CQuack::Quack()
+{
+	std::cout << "Крякает" << std::endl;
+}

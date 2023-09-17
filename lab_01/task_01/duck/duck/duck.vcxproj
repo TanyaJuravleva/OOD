@@ -147,7 +147,7 @@
     <ClInclude Include="DRubberDuck.h" />
     <ClInclude Include="CSqueak.h" />
     <ClInclude Include="СFlyNoWay.h" />
-    <ClInclude Include="СFlyWithWings.h" />
+    <ClInclude Include="CFlyWithWings.h" />
     <ClInclude Include="IFlyBehavior.h" />
     <ClInclude Include="IQuackBehavior.h" />
     <ClInclude Include="CQuack.h" />
@@ -157,7 +157,7 @@
     <ClCompile Include="CMuteQuack.cpp" />
     <ClCompile Include="CSqueak.cpp" />
     <ClCompile Include="СFlyNoWay.cpp" />
-    <ClCompile Include="СFlyWithWings.cpp" />
+    <ClCompile Include="CFlyWithWings.cpp" />
     <ClCompile Include="IFlyBehavior.cpp" />
     <ClCompile Include="CQuack.cpp" />
   </ItemGroup>
