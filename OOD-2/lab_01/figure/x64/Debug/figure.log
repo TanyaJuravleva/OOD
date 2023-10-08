@@ -1,2 +1,15 @@
-﻿  main.cpp
+﻿  CCircle.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_01\figure\CCircle.cpp(15,24): warning C4244: аргумент: преобразование "const int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_01\figure\CCircle.cpp(16,79): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_01\figure\CCircle.cpp(16,54): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+  main.cpp
+  Создание кода...
   figure.vcxproj -> C:\Users\krill_000\source\repos\OOD\OOD-2\lab_01\figure\x64\Debug\figure.exe

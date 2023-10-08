@@ -12,7 +12,7 @@ void CRectangle::Draw(sf::RenderWindow& window) const
 	shape.setSize(sf::Vector2f( GetWidth(),GetHeight() ));
 	shape.setPosition(sf::Vector2f(GetRightBottom().GetPointX() - GetWidth()/ 2,
 		GetRightBottom().GetPointY() - GetHeight() / 2 ));
-	shape.setFillColor(sf::Color(0xFF, 0x0, 0x0));
+	shape.setFillColor(sf::Color(0xFF, 0xFF, 0x0));
 	window.draw(shape);
 }
 
