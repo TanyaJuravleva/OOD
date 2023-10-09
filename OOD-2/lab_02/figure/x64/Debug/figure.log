@@ -1,5 +1,58 @@
-﻿  CCircleDecorator.cpp
-  CShapeDecorator.cpp
+﻿  CTriangleDecorator.cpp
   main.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,66): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,45): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(66,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(65,70): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(77,103): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(77,67): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(78,103): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(78,67): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(79,103): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(79,67): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(86,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(87,33): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(87,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Создание кода...
+x64\Debug\CRectangleDecorator.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
   figure.vcxproj -> C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\x64\Debug\figure.exe
