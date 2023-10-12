@@ -60,24 +60,20 @@ std::vector<std::unique_ptr<IShapeDecorator>> GetArrayOfFiguresFromInpFile(char*
 		{
 			inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
 			sf::RectangleShape rec;
-			auto newRec = std::make_unique<CRectangleDecorator>(rec, recTopPointX, recTopPointY, recBotPointX, recBotPointY);
-			rec.setSize(sf::Vector2f(newRec->GetWidth(), newRec->GetHeight()));
-			rec.setPosition(sf::Vector2f(newRec->GetRightBottom().GetPointX() - newRec->GetWidth() / 2,
-				newRec->GetRightBottom().GetPointY() - newRec->GetHeight() / 2));
-			array.emplace_back(std::make_unique<CRectangleDecorator>(rec, recTopPointX, recTopPointY, recBotPointX, recBotPointY));
+			rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
+			rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
+			array.emplace_back(std::make_unique<CRectangleDecorator>(rec));
 		}
 
 		if (figureName == TRIANGLE)
 		{
 			inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
 			sf::ConvexShape trian;
-			auto newTrian = std::make_unique <CTriangleDecorator>(trian, vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y);
-			//shape.setFillColor(sf::Color(0xFF, 0, 0xFF));
 			trian.setPointCount(3);
-			trian.setPoint(0, sf::Vector2f(newTrian->GetVertex1().GetPointX(), newTrian->GetVertex1().GetPointY()));
-			trian.setPoint(1, sf::Vector2f(newTrian->GetVertex2().GetPointX(), newTrian->GetVertex2().GetPointY()));
-			trian.setPoint(2, sf::Vector2f(newTrian->GetVertex3().GetPointX(), newTrian->GetVertex3().GetPointY()));
-			array.emplace_back(std::make_unique <CTriangleDecorator>(trian, vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y));
+			trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
+			trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
+			trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y)); 
+			array.emplace_back(std::make_unique <CTriangleDecorator>(trian));
 		}
 
 		if (figureName == CIRCLE)
@@ -138,7 +134,6 @@ void StartWorkWithFigures(char* inpFName, char* outFName)
 
 int main(int argc, char* argv[])
 {
-	//setlocale(LC_ALL, "Russian");
 	bool programRun = CheckInputArguments(argc, argv);
 	if (!programRun)
 		return 1;
@@ -150,3 +145,16 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+/*sf::Vector2f(newRec->GetRightBottom().GetPointX() - newRec->GetWidth() / 2,
+	newRec->GetRightBottom().GetPointY() - newRec->GetHeight() / 2)*/
+
+	//auto newRec = std::make_unique<CRectangleDecorator>(rec, recTopPointX, recTopPointY, recBotPointX, recBotPointY);
+				/*rec.setSize(sf::Vector2f(newRec->GetWidth(), newRec->GetHeight()));
+				rec.setPosition(sf::Vector2f(newRec->GetLeftTop().GetPointX(), newRec->GetLeftTop().GetPointY()));*/
+
+				/*auto newTrian = std::make_unique <CTriangleDecorator>(trian, vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y);
+							trian.setPointCount(3);
+							trian.setPoint(0, sf::Vector2f(newTrian->GetVertex1().GetPointX(), newTrian->GetVertex1().GetPointY()));
+							trian.setPoint(1, sf::Vector2f(newTrian->GetVertex2().GetPointX(), newTrian->GetVertex2().GetPointY()));
+							trian.setPoint(2, sf::Vector2f(newTrian->GetVertex3().GetPointX(), newTrian->GetVertex3().GetPointY()));*/

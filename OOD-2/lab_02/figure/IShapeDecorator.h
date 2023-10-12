@@ -11,6 +11,8 @@ public:
 	virtual std::string GetName() const = 0;
 	virtual void Draw(sf::RenderWindow& window) const = 0;
 	virtual std::string ToString() const = 0;
+};
+
 //protected:
 //	CShapeDecorator(std::unique_ptr<sf::Shape>&& shape, std::string name)
 //		: m_shape(move(shape)),
@@ -25,4 +27,3 @@ public:
 //private:
 //	std::unique_ptr<sf::Shape> m_shape;
 //	std::string m_name;
-};

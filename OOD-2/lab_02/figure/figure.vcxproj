@@ -148,14 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCircleDecorator.cpp" />
-    <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="CRectangleDecorator.cpp" />
     <ClCompile Include="CRectangleDecorator.h" />
     <ClCompile Include="CTriangleDecorator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CPoint.h" />
     <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="IShapeDecorator.h" />
     <ClInclude Include="CCircleDecorator.h" />

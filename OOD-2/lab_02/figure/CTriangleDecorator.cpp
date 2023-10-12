@@ -2,12 +2,6 @@
 
 void CTriangleDecorator::Draw(sf::RenderWindow& window) const
 {
-	//sf::ConvexShape shape;
-	//shape.setFillColor(sf::Color(0xFF, 0, 0xFF));
-	//shape.setPointCount(3);
-	//shape.setPoint(0, sf::Vector2f(GetVertex1().GetPointX(), GetVertex1().GetPointY()));
-	//shape.setPoint(1, sf::Vector2f(GetVertex2().GetPointX(), GetVertex2().GetPointY()));
-	//shape.setPoint(2, sf::Vector2f(GetVertex3().GetPointX(), GetVertex3().GetPointY()));
 	window.draw(m_triangle);
 }
 std::string CTriangleDecorator::GetName() const
@@ -36,25 +30,15 @@ std::string CTriangleDecorator::ToString() const
 		TRIANGLE_PERIMETER + std::to_string(GetPerimeter());
 
 }
-CPoint CTriangleDecorator::GetVertex1() const
-{
-	return m_vertex1;
-}
-CPoint CTriangleDecorator::GetVertex2() const
-{
-	return m_vertex2;
-}
-CPoint CTriangleDecorator::GetVertex3() const
-{
-	return m_vertex3;
-}
 
 double CTriangleDecorator::GetA() const
 {
-	double x1 = GetVertex1().GetPointX();
-	double y1 = GetVertex1().GetPointY();
-	double x2 = GetVertex2().GetPointX();
-	double y2 = GetVertex2().GetPointY();
+	auto point1 = m_triangle.getPoint(0);
+	auto point2 = m_triangle.getPoint(1);
+	double x1 = point1.x;
+	double y1 = point1.y;
+	double x2 = point2.x;
+	double y2 = point2.y;
 	double x2x1 = x2 - x1;
 	double y2y1 = y2 - y1;
 	double a = sqrt(x2x1 * x2x1 + y2y1 * y2y1);
@@ -63,10 +47,12 @@ double CTriangleDecorator::GetA() const
 
 double CTriangleDecorator::GetB() const
 {
-	double x2 = GetVertex2().GetPointX();
-	double y2 = GetVertex2().GetPointY();
-	double x3 = GetVertex3().GetPointX();
-	double y3 = GetVertex3().GetPointY();
+	auto point2 = m_triangle.getPoint(1);
+	auto point3 = m_triangle.getPoint(2);
+	double x2 = point2.x;
+	double y2 = point2.y;
+	double x3 = point3.x;
+	double y3 = point3.y;
 	double x3x2 = x3 - x2;
 	double y3y2 = y3 - y2;
 	double b = sqrt(x3x2 * x3x2 + y3y2 * y3y2);
@@ -75,12 +61,27 @@ double CTriangleDecorator::GetB() const
 
 double CTriangleDecorator::GetC() const
 {
-	double x1 = GetVertex1().GetPointX();
-	double y1 = GetVertex1().GetPointY();
-	double x3 = GetVertex3().GetPointX();
-	double y3 = GetVertex3().GetPointY();
+	auto point1 = m_triangle.getPoint(0);
+	auto point3 = m_triangle.getPoint(2);
+	double x1 = point1.x;
+	double y1 = point1.y;
+	double x3 = point3.x;
+	double y3 = point3.y;
 	double x1x3 = x1 - x3;
 	double y1y3 = y1 - y3;
 	double c = sqrt(x1x3 * x1x3 + y1y3 * y1y3);
 	return c;
 }
+
+//CPoint CTriangleDecorator::GetVertex1() const
+//{
+//	return m_vertex1;
+//}
+//CPoint CTriangleDecorator::GetVertex2() const
+//{
+//	return m_vertex2;
+//}
+//CPoint CTriangleDecorator::GetVertex3() const
+//{
+//	return m_vertex3;
+//}

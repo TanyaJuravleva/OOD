@@ -15,11 +15,13 @@ std::string CRectangleDecorator::ToString() const
 }
 double CRectangleDecorator::GetArea() const
 {
-	return (double)GetWidth() * (double)GetHeight();
+	auto size = m_rectangle.getSize();
+	return (double)size.x * (double)size.y;
 }
 double CRectangleDecorator::GetPerimeter() const
 {
-	return 2 * (double)GetWidth() + (double)GetHeight();
+	auto size = m_rectangle.getSize();
+	return 2 * ((double)size.x + (double)size.y);
 }
 std::string CRectangleDecorator::GetName() const
 {
@@ -27,24 +29,24 @@ std::string CRectangleDecorator::GetName() const
 }
 void CRectangleDecorator::Draw(sf::RenderWindow& window) const
 {
-	//sf::CircleShape shape(m_radius);
-	//shape.setPosition(sf::Vector2f(GetCenter().GetPointX(), GetCenter().GetPointY()));
-	//shape.setFillColor(sf::Color(0xFF, 0x0, 0x0));
 	window.draw(m_rectangle);
 }
-CPoint CRectangleDecorator::GetLeftTop() const
-{
-	return m_leftTop;
-}
-CPoint CRectangleDecorator::GetRightBottom() const
-{
-	return m_rightBottom;
-}
-int CRectangleDecorator::GetWidth() const
-{
-	return GetRightBottom().GetPointX() - GetLeftTop().GetPointX();
-}
-int CRectangleDecorator::GetHeight() const
-{
-	return GetRightBottom().GetPointY() - GetLeftTop().GetPointY();
-}
+//CPoint CRectangleDecorator::GetLeftTop() const
+//{
+//	return m_leftTop;
+//}
+//CPoint CRectangleDecorator::GetRightBottom() const
+//{
+//	return m_rightBottom;
+//}
+//int CRectangleDecorator::GetWidth() const
+//{
+//	return GetRightBottom().GetPointX() - GetLeftTop().GetPointX();
+//}
+//int CRectangleDecorator::GetHeight() const
+//{
+//	return GetRightBottom().GetPointY() - GetLeftTop().GetPointY();
+//}
+
+	/*return (double)GetWidth() * (double)GetHeight();*/
+	/*return 2 * (double)GetWidth() + (double)GetHeight();*/
