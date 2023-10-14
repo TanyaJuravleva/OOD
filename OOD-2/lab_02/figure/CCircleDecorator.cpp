@@ -15,12 +15,12 @@ std::string CCircleDecorator::ToString() const
 }
 double CCircleDecorator::GetArea() const
 {
-	return M_PI * m_circle.getRadius() * m_circle.getRadius();
+	return M_PI * m_circle->getRadius() * m_circle->getRadius();
 
 }
 double CCircleDecorator::GetPerimeter() const
 {
-	return 2 * M_PI * m_circle.getRadius();
+	return 2 * M_PI * m_circle->getRadius();
 }
 std::string CCircleDecorator::GetName() const
 {
@@ -28,5 +28,34 @@ std::string CCircleDecorator::GetName() const
 }
 void CCircleDecorator::Draw(sf::RenderWindow& window) const
 {
-	window.draw(m_circle);
+	window.draw(*m_circle);
+}
+
+void CCircleDecorator::SetPosition(int x, int y) const
+{
+	m_circle->setPosition(x, y);
+}
+
+sf::FloatRect CCircleDecorator::GetGlobalBounds() const
+{
+	return m_circle->getGlobalBounds();
+}
+
+void CCircleDecorator::DrawFrame(sf::RenderWindow& window) const
+{
+	sf::VertexArray lines(sf::Lines, 8);
+	//1
+	lines[0].position = sf::Vector2f(m_circle->getPosition().x - 5, m_circle->getPosition().y - 5);
+	lines[1].position = sf::Vector2f(m_circle->getPosition().x + 2 * m_circle->getRadius() + 5, m_circle->getPosition().y - 5);
+	//2
+	lines[2].position = sf::Vector2f(m_circle->getPosition().x + 2 * m_circle->getRadius() + 5, m_circle->getPosition().y - 5);
+	lines[3].position = sf::Vector2f(m_circle->getPosition().x + 2 * m_circle->getRadius() + 5, m_circle->getPosition().y + 2 * m_circle->getRadius() + 5);
+	//3
+	lines[4].position = sf::Vector2f(m_circle->getPosition().x + 2 * m_circle->getRadius() + 5, m_circle->getPosition().y + 2 * m_circle->getRadius() + 5);
+	lines[5].position = sf::Vector2f(m_circle->getPosition().x - 5, m_circle->getPosition().y + 2 * m_circle->getRadius() + 5);
+	
+	//4
+	lines[6].position = sf::Vector2f(m_circle->getPosition().x - 5, m_circle->getPosition().y + 2 * m_circle->getRadius() + 5);
+	lines[7].position = sf::Vector2f(m_circle->getPosition().x - 5, m_circle->getPosition().y - 5);
+	window.draw(lines);
 }

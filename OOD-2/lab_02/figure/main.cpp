@@ -56,32 +56,35 @@ std::vector<std::unique_ptr<IShapeDecorator>> GetArrayOfFiguresFromInpFile(char*
 	while (inpFile >> figureName)
 	{
 		figureName.erase(std::prev(figureName.end()));
-		if (figureName == RECTANGLE)
-		{
-			inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
-			sf::RectangleShape rec;
-			rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
-			rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
-			array.emplace_back(std::make_unique<CRectangleDecorator>(rec));
-		}
+		//if (figureName == RECTANGLE)
+		//{
+		//	inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
+		//	sf::RectangleShape rec;
+		//	rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
+		//	rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
+		//	//arrayOfShapes.emplace_back(std::make_unique<sf::RectangleShape>(rec));
+		//	//array.emplace_back(std::make_unique<CRectangleDecorator>(rec));
+		//}
 
-		if (figureName == TRIANGLE)
-		{
-			inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-			sf::ConvexShape trian;
-			trian.setPointCount(3);
-			trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
-			trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
-			trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y)); 
-			array.emplace_back(std::make_unique <CTriangleDecorator>(trian));
-		}
+		//if (figureName == TRIANGLE)
+		//{
+		//	inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
+		//	sf::ConvexShape trian;
+		//	trian.setPointCount(3);
+		//	trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
+		//	trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
+		//	trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y)); 
+		//	//arrayOfShapes.emplace_back(std::make_unique<sf::ConvexShape>(trian));
+		//	//array.emplace_back(std::make_unique <CTriangleDecorator>(trian));
+		//}
 
 		if (figureName == CIRCLE)
 		{
 			inpFile >> center_x >> center_y >> radius;
 			auto circle = sf::CircleShape(radius);
-			circle.setPosition(center_x, center_y);
-			array.emplace_back(std::make_unique<CCircleDecorator>(circle));
+			circle.setPosition(center_x - radius, center_y - radius);
+			auto circlePtr = std::make_unique<sf::CircleShape>(circle);
+			array.emplace_back(std::make_unique<CCircleDecorator>(move(circlePtr)));
 		}
 	}
 	inpFile.close();
@@ -104,20 +107,106 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	const int WINDOW_HEIGHT = 800;
 	const std::string WINDOW_NAME = "Draw figures";
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), WINDOW_NAME);
+	bool draged = false, isFrame = false, isGroup = false;
+	int index = 0;
+	std::vector<int> vectorIndex;
+	sf::Vector2i oldPos, newPos;
 	while (window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
 		window.clear();
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
 			arrayFigures[i]->Draw(window);
 		}
+		auto pixelPos = sf::Mouse::getPosition(window);
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+			/*if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.key.code == sf::Mouse::Left) {
+					for (int i = 0; i < arrayFigures.size(); i++)
+					{
+						if (arrayFigures[i]->GetGlobalBounds().contains(pixelPos.x, pixelPos.y))
+						{
+							draged = true;
+							isFrame = true;
+							index = i;
+							break;
+						}
+					}
+				}
+			}*/
+			//if (event.type == sf::Event::MouseButtonReleased) {
+			//	if (event.key.code == sf::Mouse::Left) {
+			//		draged = false;
+			//	}
+			//}
+			//if ((event.type == sf::Event::KeyPressed))
+			//{
+			//	if (event.key.code == sf::Keyboard::LShift)
+			//	{
+					if (event.type == sf::Event::MouseButtonPressed) {
+						if (event.key.code == sf::Mouse::Left) {
+							isGroup = false;
+							newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
+							oldPos = sf::Mouse::getPosition(window);
+						}
+					}
+					if (event.type == sf::Event::MouseButtonReleased) {
+						if (event.key.code == sf::Mouse::Left) {
+							newPos = sf::Mouse::getPosition(window);
+							isGroup = true;
+						}
+					}
+			//	}
+			//}
+		}
+		if (draged)
+		{
+			arrayFigures[index]->SetPosition(pixelPos.x, pixelPos.y);
+		}
+		if (isGroup)
+		{
+			sf::RectangleShape rec;
+			if (newPos != oldPos)
+			{
+				rec.setSize(sf::Vector2f(newPos.x - oldPos.x, newPos.y - oldPos.y));
+				rec.setPosition(sf::Vector2f(oldPos.x, oldPos.y));
+				vectorIndex.clear();
+				for (int i = 0; i < arrayFigures.size(); i++)
+				{
+					if (arrayFigures[i]->GetGlobalBounds().intersects(rec.getGlobalBounds()))
+					{
+						/*isFrame = true;*/
+						arrayFigures[i]->DrawFrame(window);
+						//vectorIndex.push_back(i);
+					}
+				}
+			}
+			else
+			{
+				for (int i = 0; i < arrayFigures.size(); i++)
+				{
+					if (arrayFigures[i]->GetGlobalBounds().contains(newPos.x, newPos.y))
+					{
+						arrayFigures[i]->DrawFrame(window);
+						break;
+					}
+				}
+			}
+			//window.draw(rec);
+		}
+		//if (isFrame)
+		//{
+		//	//arrayFigures[index]->DrawFrame(window);
+		//	for (int i = 0; i < vectorIndex.size(); i++)
+		//	{
+		//		arrayFigures[i]->DrawFrame(window);
+		//	}
+		//}
+
 		window.display();
 	}
 }

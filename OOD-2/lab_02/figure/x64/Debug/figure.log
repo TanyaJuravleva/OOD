@@ -1,61 +1,96 @@
 ﻿  CCircleDecorator.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,24): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   CRectangleDecorator.cpp
   CRectangleDecorator.h
+  CShapeComposite.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xmemory(681,47): error C2280: "std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>::unique_ptr(const std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)": предпринята попытка ссылки на удаленную функцию
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\memory(3237): message : см. объявление "std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>::unique_ptr"
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\memory(3237,5): message : "std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>::unique_ptr(const std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)": функция явно удалена.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(708): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>&>(_Alloc &,_Objty *const ,std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)"
+          with
+          [
+              _Alloc=std::allocator<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>>,
+              _Ty=std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>,
+              _Objty=std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(713): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Default_allocator_traits<_Alloc>::construct<_Ty,std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>&>(_Alloc &,_Objty *const ,std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)"
+          with
+          [
+              _Alloc=std::allocator<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>>,
+              _Ty=std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>,
+              _Objty=std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector(726): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::vector<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>,std::allocator<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>>>::_Emplace_back_with_unused_capacity<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>&>(std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)"
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(5): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::vector<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>,std::allocator<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>>>::emplace_back<std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>>&>(std::unique_ptr<IShapeDecorator,std::default_delete<IShapeDecorator>> &)"
   CTriangleDecorator.cpp
+  IShapeDecorator.cpp
   main.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(63,71): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(84,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(85,51): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(85,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(49,17): warning C4101: vertex1_y: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(50,14): warning C4101: vertex2_y: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(47,6): warning C4101: recTopPointX: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(47,34): warning C4101: recBotPointX: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(47,20): warning C4101: recTopPointY: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(50,3): warning C4101: vertex2_x: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(49,6): warning C4101: vertex1_x: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(51,14): warning C4101: vertex3_y: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(51,3): warning C4101: vertex3_x: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(47,48): warning C4101: recBotPointY: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(175,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(63,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(175,39): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,47): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(176,50): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(176,40): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(73,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(192,70): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(73,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(192,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
+          [
+              T=int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(74,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(74,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(75,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(75,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(82,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(83,33): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(83,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Создание кода...
-x64\Debug\CRectangleDecorator.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
-  figure.vcxproj -> C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\x64\Debug\figure.exe

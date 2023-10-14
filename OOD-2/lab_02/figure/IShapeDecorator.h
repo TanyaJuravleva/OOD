@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-class IShapeDecorator
+class IShapeDecorator 
 {
 public:
 	virtual double GetArea() const = 0;
@@ -11,6 +11,9 @@ public:
 	virtual std::string GetName() const = 0;
 	virtual void Draw(sf::RenderWindow& window) const = 0;
 	virtual std::string ToString() const = 0;
+	virtual void SetPosition(int x, int y) const = 0;
+	virtual sf::FloatRect GetGlobalBounds() const = 0;
+	virtual void DrawFrame(sf::RenderWindow& window) const = 0;
 };
 
 //protected:

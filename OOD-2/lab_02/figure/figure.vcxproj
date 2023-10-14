@@ -150,10 +150,13 @@
     <ClCompile Include="CCircleDecorator.cpp" />
     <ClCompile Include="CRectangleDecorator.cpp" />
     <ClCompile Include="CRectangleDecorator.h" />
+    <ClCompile Include="CShapeComposite.cpp" />
     <ClCompile Include="CTriangleDecorator.cpp" />
+    <ClCompile Include="IShapeDecorator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CShapeComposite.h" />
     <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="IShapeDecorator.h" />
     <ClInclude Include="CCircleDecorator.h" />
