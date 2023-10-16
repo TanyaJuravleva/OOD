@@ -1,6 +1,5 @@
 #pragma once
 #include "IShapeDecorator.h"
-#include <vector>
 
 class CShapeComposite : public IShapeDecorator
 {
@@ -14,6 +13,7 @@ public:
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
 	void Add(std::unique_ptr<IShapeDecorator> shape);
+	std::vector<std::unique_ptr<IShapeDecorator>> Remove();
 private:
 	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;
 };

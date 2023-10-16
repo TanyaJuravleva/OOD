@@ -59,3 +59,8 @@ void CCircleDecorator::DrawFrame(sf::RenderWindow& window) const
 	lines[7].position = sf::Vector2f(m_circle->getPosition().x - 5, m_circle->getPosition().y - 5);
 	window.draw(lines);
 }
+
+//sf::Vector2f  CCircleDecorator::GetPosition() const
+//{
+//	return m_circle->getPosition();
+//}

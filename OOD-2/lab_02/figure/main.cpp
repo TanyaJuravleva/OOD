@@ -8,6 +8,12 @@
 #include "CCircleDecorator.h"
 #include "CRectangleDecorator.h"
 #include "CTriangleDecorator.h"
+#include "CShapeComposite.h"
+
+template <typename T>
+void remove(std::vector<T>& v, size_t index) {
+	v.erase(v.begin() + index);
+}
 
 bool CheckInputArguments(int argc, char* argv[])
 {
@@ -107,67 +113,100 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	const int WINDOW_HEIGHT = 800;
 	const std::string WINDOW_NAME = "Draw figures";
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), WINDOW_NAME);
-	bool draged = false, isFrame = false, isGroup = false;
-	int index = 0;
+	bool isDraged = false, isClick = false, isFrame = false, isSelect = false, select = false, isGroup = false, isNotGroup = false;
+	int index = 0, dx = 0, dy = 0;
 	std::vector<int> vectorIndex;
 	sf::Vector2i oldPos, newPos;
 	while (window.isOpen())
 	{
 		sf::Event event;
+		sf::Event eventKey;
 		window.clear();
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
 			arrayFigures[i]->Draw(window);
 		}
-		auto pixelPos = sf::Mouse::getPosition(window);
+		sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+		sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			/*if (event.type == sf::Event::MouseButtonPressed) {
+
+			//перетаскивание фигуры
+			if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) && (event.type == sf::Event::MouseButtonPressed)) {
 				if (event.key.code == sf::Mouse::Left) {
+					isClick = true;
 					for (int i = 0; i < arrayFigures.size(); i++)
 					{
-						if (arrayFigures[i]->GetGlobalBounds().contains(pixelPos.x, pixelPos.y))
+						if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
 						{
-							draged = true;
-							isFrame = true;
 							index = i;
+							isDraged = true;
+							isFrame = true;
+							dx = pos.x - arrayFigures[i]->GetGlobalBounds().getPosition().x;//делаем разность между позицией курсора и спрайта.для корректировки нажатия
+							dy = pos.y - arrayFigures[i]->GetGlobalBounds().getPosition().y;
 							break;
 						}
 					}
 				}
-			}*/
-			//if (event.type == sf::Event::MouseButtonReleased) {
-			//	if (event.key.code == sf::Mouse::Left) {
-			//		draged = false;
-			//	}
-			//}
-			//if ((event.type == sf::Event::KeyPressed))
-			//{
-			//	if (event.key.code == sf::Keyboard::LShift)
-			//	{
-					if (event.type == sf::Event::MouseButtonPressed) {
-						if (event.key.code == sf::Mouse::Left) {
-							isGroup = false;
-							newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
-							oldPos = sf::Mouse::getPosition(window);
-						}
+			}
+
+			//выдедение фигур
+			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) && (event.type == sf::Event::MouseButtonPressed))
+			{
+				if (event.key.code == sf::Mouse::Left) {
+					isSelect = false;
+					select = true;
+					newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
+					oldPos = sf::Mouse::getPosition(window);
+				}
+			}
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				if (event.key.code == sf::Mouse::Left) {
+					newPos = sf::Mouse::getPosition(window);
+					if (isDraged)
+					{
+						isDraged = false;
+						continue;
 					}
-					if (event.type == sf::Event::MouseButtonReleased) {
-						if (event.key.code == sf::Mouse::Left) {
-							newPos = sf::Mouse::getPosition(window);
-							isGroup = true;
-						}
+					if ((isClick) && (!isDraged))
+					{
+						isFrame = false;
+						isClick = false;
 					}
-			//	}
-			//}
+					if (select)
+					{
+						isSelect = true;
+						select = false;
+					}
+					else
+					{
+						newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
+						vectorIndex.clear();
+					}
+				}
+			}
+
+			//группировка фигур
+			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::G)))
+			{
+				isGroup = true;
+			}
+
+			//Разгруппировка фигур
+			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::U)))
+			{
+				isNotGroup = true;
+			}
+			
 		}
-		if (draged)
+		if (isDraged)
 		{
-			arrayFigures[index]->SetPosition(pixelPos.x, pixelPos.y);
+			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
 		}
-		if (isGroup)
+		if (isSelect)
 		{
 			sf::RectangleShape rec;
 			if (newPos != oldPos)
@@ -179,14 +218,14 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 				{
 					if (arrayFigures[i]->GetGlobalBounds().intersects(rec.getGlobalBounds()))
 					{
-						/*isFrame = true;*/
 						arrayFigures[i]->DrawFrame(window);
-						//vectorIndex.push_back(i);
+						vectorIndex.push_back(i);
 					}
 				}
 			}
 			else
 			{
+				vectorIndex.clear();
 				for (int i = 0; i < arrayFigures.size(); i++)
 				{
 					if (arrayFigures[i]->GetGlobalBounds().contains(newPos.x, newPos.y))
@@ -196,16 +235,48 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 					}
 				}
 			}
-			//window.draw(rec);
 		}
-		//if (isFrame)
-		//{
-		//	//arrayFigures[index]->DrawFrame(window);
-		//	for (int i = 0; i < vectorIndex.size(); i++)
-		//	{
-		//		arrayFigures[i]->DrawFrame(window);
-		//	}
-		//}
+		if (isGroup)
+		{
+			if (!vectorIndex.empty())
+			{
+				sort(vectorIndex.begin(), vectorIndex.end());
+				std::vector<std::unique_ptr<IShapeDecorator>> newArr;
+				auto newShape = std::make_unique<CShapeComposite>();
+				bool found = false;
+				for (int i = 0; i < vectorIndex.size(); i++)
+				{
+					newShape->Add(move(arrayFigures[vectorIndex[i]]));
+				}
+				for (int i = 0; i < arrayFigures.size(); i++)
+				{
+					for (int j = 0; j < vectorIndex.size(); j++)
+					{
+						if (i == vectorIndex[j])
+						{
+							found = true;
+							break;
+						}
+					}
+					if (!found)
+						newArr.emplace_back(move(arrayFigures[i]));
+					else
+						found = false;
+				}
+				newArr.emplace_back(std::make_unique<CShapeComposite>());
+				newArr[newArr.size() - 1] = move(newShape);
+				arrayFigures = move(newArr);
+			}
+			isGroup = false;
+		}
+		if (isNotGroup)
+		{
+			isNotGroup = false;
+		}
+		if (isFrame)
+		{
+			arrayFigures[index]->DrawFrame(window);
+		}
 
 		window.display();
 	}
@@ -247,3 +318,30 @@ int main(int argc, char* argv[])
 							trian.setPoint(0, sf::Vector2f(newTrian->GetVertex1().GetPointX(), newTrian->GetVertex1().GetPointY()));
 							trian.setPoint(1, sf::Vector2f(newTrian->GetVertex2().GetPointX(), newTrian->GetVertex2().GetPointY()));
 							trian.setPoint(2, sf::Vector2f(newTrian->GetVertex3().GetPointX(), newTrian->GetVertex3().GetPointY()));*/
+
+							/*for (int i = 0; i < arrayFigures.size(); i++)
+							{
+								for (int j = 0; j < vectorIndex.size(); j++)
+								{
+									if (i == vectorIndex[j])
+									{
+										found = true;
+										break;
+									}
+								}
+								if (!found)
+									IShapeDecorator nec = &arrayFigures[i];
+									newArr.push_back(nec);
+								else
+									found = false;
+							}*/
+
+							//for (int i = 0; i < vectorIndex.size(); i++)
+							//{
+							//	int ind = vectorIndex[i] - i;
+							//	//remove(arrayFigures, ind);
+							//}
+
+				//std::ofstream out("out.txt");
+				//out <</* newShape->GetName()*/arrayFigures[arrayFigures.size()-1]->GetName();
+				//out.close();
