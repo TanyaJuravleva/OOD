@@ -18,6 +18,8 @@ public:
 	void SetPosition(int x, int y) const override;
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
+	bool isGroup() const override;
+	std::vector<std::unique_ptr<IShapeDecorator>> Remove() override;
 private:
 	std::unique_ptr<sf::CircleShape> m_circle;
 };

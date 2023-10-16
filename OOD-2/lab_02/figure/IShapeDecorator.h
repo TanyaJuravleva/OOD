@@ -15,6 +15,8 @@ public:
 	virtual sf::FloatRect GetGlobalBounds() const = 0;
 	//virtual sf::Vector2f GetPosition() const = 0;
 	virtual void DrawFrame(sf::RenderWindow& window) const = 0;
+	virtual bool isGroup() const = 0;
+	virtual std::vector<std::unique_ptr<IShapeDecorator>> Remove() = 0;
 };
 
 //protected:

@@ -1,90 +1,53 @@
-﻿  main.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(90,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(91,51): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(91,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(55,17): warning C4101: vertex1_y: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(56,14): warning C4101: vertex2_y: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(53,6): warning C4101: recTopPointX: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(53,34): warning C4101: recBotPointX: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(53,20): warning C4101: recTopPointY: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(56,3): warning C4101: vertex2_x: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(55,6): warning C4101: vertex1_x: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(57,14): warning C4101: vertex3_y: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(57,3): warning C4101: vertex3_x: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(53,48): warning C4101: recBotPointY: неиспользованная локальная переменная
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(147,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+﻿  CShapeComposite.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(79,29): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(100,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(148,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(101,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(207,55): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(181,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(207,43): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(182,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(214,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(183,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(214,39): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(184,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(215,50): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(237,75): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(215,40): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(238,55): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(231,70): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(308,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(231,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(309,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
-          [
-              T=int
-          ]
-          and
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(123,13): warning C4101: eventKey: неиспользованная локальная переменная
   figure.vcxproj -> C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\x64\Debug\figure.exe
