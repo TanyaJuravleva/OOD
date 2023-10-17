@@ -1,52 +1,98 @@
-//#define _USE_MATH_DEFINES
-//
-//#include "CRectangleDecorator.h"
-//
-//std::string CRectangleDecorator::ToString() const
+#define _USE_MATH_DEFINES
+
+#include "CRectangleDecorator.h"
+
+std::string CRectangleDecorator::ToString() const
+{
+	const std::string RECTANGLE_AREA = "S=";
+	const std::string RECTANGLE_PERIMETER = "P=";
+	const std::string WHITESPACE = " ";
+	const std::string COMMA = ", ";
+	const std::string TWO_DOTS = ": ";
+	return GetName() + TWO_DOTS +
+		RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
+		RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
+}
+double CRectangleDecorator::GetArea() const
+{
+	auto size = m_rectangle->getSize();
+	return (double)size.x * (double)size.y;
+}
+double CRectangleDecorator::GetPerimeter() const
+{
+	auto size = m_rectangle->getSize();
+	return 2 * ((double)size.x + (double)size.y);
+}
+std::string CRectangleDecorator::GetName() const
+{
+	return REC_NAME;
+}
+void CRectangleDecorator::Draw(sf::RenderWindow& window) const
+{
+	window.draw(*m_rectangle);
+}
+
+void CRectangleDecorator::SetPosition(int x, int y) const
+{
+	m_rectangle->setPosition(x, y);
+}
+
+sf::FloatRect CRectangleDecorator::GetGlobalBounds() const
+{
+	return m_rectangle->getGlobalBounds();
+}
+
+void CRectangleDecorator::DrawFrame(sf::RenderWindow& window) const
+{
+	sf::VertexArray lines(sf::Lines, 8);
+	//1
+	lines[0].position = sf::Vector2f(m_rectangle->getPosition().x - 5, m_rectangle->getPosition().y - 5);
+	lines[1].position = sf::Vector2f(m_rectangle->getPosition().x + m_rectangle->getSize().x + 5, m_rectangle->getPosition().y - 5);
+	//2
+	lines[2].position = sf::Vector2f(m_rectangle->getPosition().x + m_rectangle->getSize().x + 5, m_rectangle->getPosition().y - 5);
+	lines[3].position = sf::Vector2f(m_rectangle->getPosition().x + m_rectangle->getSize().x + 5, m_rectangle->getPosition().y + m_rectangle->getSize().y + 5);
+	//3
+	lines[4].position = sf::Vector2f(m_rectangle->getPosition().x + m_rectangle->getSize().x + 5, m_rectangle->getPosition().y + m_rectangle->getSize().y + 5);
+	lines[5].position = sf::Vector2f(m_rectangle->getPosition().x - 5, m_rectangle->getPosition().y + m_rectangle->getSize().y + 5);
+
+	//4
+	lines[6].position = sf::Vector2f(m_rectangle->getPosition().x - 5, m_rectangle->getPosition().y + m_rectangle->getSize().y + 5);
+	lines[7].position = sf::Vector2f(m_rectangle->getPosition().x - 5, m_rectangle->getPosition().y - 5);
+	window.draw(lines);
+}
+
+bool CRectangleDecorator::isGroup() const
+{
+	return false;
+}
+
+std::vector<std::unique_ptr<IShapeDecorator>> CRectangleDecorator::Remove()
+{
+	std::vector<std::unique_ptr<IShapeDecorator>> n;
+	return move(n);
+}
+
+sf::Vector2f CRectangleDecorator::GetPosition() const
+{
+	return m_rectangle->getPosition();
+}
+
+//CPoint CRectangleDecorator::GetLeftTop() const
 //{
-//	const std::string RECTANGLE_AREA = "S=";
-//	const std::string RECTANGLE_PERIMETER = "P=";
-//	const std::string WHITESPACE = " ";
-//	const std::string COMMA = ", ";
-//	const std::string TWO_DOTS = ": ";
-//	return GetName() + TWO_DOTS +
-//		RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
-//		RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
+//	return m_leftTop;
 //}
-//double CRectangleDecorator::GetArea() const
+//CPoint CRectangleDecorator::GetRightBottom() const
 //{
-//	auto size = m_rectangle.getSize();
-//	return (double)size.x * (double)size.y;
+//	return m_rightBottom;
 //}
-//double CRectangleDecorator::GetPerimeter() const
+//int CRectangleDecorator::GetWidth() const
 //{
-//	auto size = m_rectangle.getSize();
-//	return 2 * ((double)size.x + (double)size.y);
+//	return GetRightBottom().GetPointX() - GetLeftTop().GetPointX();
 //}
-//std::string CRectangleDecorator::GetName() const
+//int CRectangleDecorator::GetHeight() const
 //{
-//	return REC_NAME;
+//	return GetRightBottom().GetPointY() - GetLeftTop().GetPointY();
 //}
-//void CRectangleDecorator::Draw(sf::RenderWindow& window) const
-//{
-//	window.draw(m_rectangle);
-//}
-////CPoint CRectangleDecorator::GetLeftTop() const
-////{
-////	return m_leftTop;
-////}
-////CPoint CRectangleDecorator::GetRightBottom() const
-////{
-////	return m_rightBottom;
-////}
-////int CRectangleDecorator::GetWidth() const
-////{
-////	return GetRightBottom().GetPointX() - GetLeftTop().GetPointX();
-////}
-////int CRectangleDecorator::GetHeight() const
-////{
-////	return GetRightBottom().GetPointY() - GetLeftTop().GetPointY();
-////}
-//
-//	/*return (double)GetWidth() * (double)GetHeight();*/
-//	/*return 2 * (double)GetWidth() + (double)GetHeight();*/
+
+	/*return (double)GetWidth() * (double)GetHeight();*/
+	/*return 2 * (double)GetWidth() + (double)GetHeight();*/

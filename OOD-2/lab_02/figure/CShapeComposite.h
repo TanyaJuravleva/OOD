@@ -15,6 +15,7 @@ public:
 	void Add(std::unique_ptr<IShapeDecorator> shape);
 	std::vector<std::unique_ptr<IShapeDecorator>> Remove() override;
 	bool isGroup() const override;
+	sf::Vector2f GetPosition() const override;
 private:
 	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;
 };

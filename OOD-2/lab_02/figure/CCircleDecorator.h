@@ -20,6 +20,7 @@ public:
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
 	std::vector<std::unique_ptr<IShapeDecorator>> Remove() override;
+	sf::Vector2f GetPosition() const override;
 private:
 	std::unique_ptr<sf::CircleShape> m_circle;
 };

@@ -62,27 +62,28 @@ std::vector<std::unique_ptr<IShapeDecorator>> GetArrayOfFiguresFromInpFile(char*
 	while (inpFile >> figureName)
 	{
 		figureName.erase(std::prev(figureName.end()));
-		//if (figureName == RECTANGLE)
-		//{
-		//	inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
-		//	sf::RectangleShape rec;
-		//	rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
-		//	rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
-		//	//arrayOfShapes.emplace_back(std::make_unique<sf::RectangleShape>(rec));
-		//	//array.emplace_back(std::make_unique<CRectangleDecorator>(rec));
-		//}
+		if (figureName == RECTANGLE)
+		{
+			inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
+			sf::RectangleShape rec;
+			rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
+			rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
+			//arrayOfShapes.emplace_back(std::make_unique<sf::RectangleShape>(rec));
+			auto recPtr = std::make_unique<sf::RectangleShape>(rec);
+			array.emplace_back(std::make_unique<CRectangleDecorator>(move(recPtr)));
+		}
 
-		//if (figureName == TRIANGLE)
-		//{
-		//	inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-		//	sf::ConvexShape trian;
-		//	trian.setPointCount(3);
-		//	trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
-		//	trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
-		//	trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y)); 
-		//	//arrayOfShapes.emplace_back(std::make_unique<sf::ConvexShape>(trian));
-		//	//array.emplace_back(std::make_unique <CTriangleDecorator>(trian));
-		//}
+		if (figureName == TRIANGLE)
+		{
+			inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
+			sf::ConvexShape trian;
+			trian.setPointCount(3);
+			trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
+			trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
+			trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y)); 
+			auto trianPtr = std::make_unique<sf::ConvexShape>(trian);
+			array.emplace_back(std::make_unique <CTriangleDecorator>(move(trianPtr)));
+		}
 
 		if (figureName == CIRCLE)
 		{
@@ -122,6 +123,7 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		sf::Event event;
 		sf::Event eventKey;
 		window.clear();
+		window.setVerticalSyncEnabled(true);
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
 			arrayFigures[i]->Draw(window);
@@ -145,8 +147,8 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 							index = i;
 							isDraged = true;
 							isFrame = true;
-							dx = pos.x - arrayFigures[i]->GetGlobalBounds().getPosition().x;
-							dy = pos.y - arrayFigures[i]->GetGlobalBounds().getPosition().y;
+							dx = pos.x - arrayFigures[i]->GetPosition().x;
+							dy = pos.y - arrayFigures[i]->GetPosition().y;
 							break;
 						}
 					}
@@ -215,6 +217,7 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 					newPos.x = arrayFigures[index]->GetGlobalBounds().getPosition().x + arrayFigures[index]->GetGlobalBounds().getSize().x;
 					newPos.y = arrayFigures[index]->GetGlobalBounds().getPosition().y + arrayFigures[index]->GetGlobalBounds().getSize().y;
 					isSelect = true;
+					isFrame = false;
 					isNotGroup = true;
 				}
 			}
@@ -222,7 +225,7 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		}
 		if (isDraged)
 		{
-			arrayFigures[index]->SetPosition(pos.x - dx - 1, pos.y - dy);
+			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
 		}
 		if (isSelect)
 		{

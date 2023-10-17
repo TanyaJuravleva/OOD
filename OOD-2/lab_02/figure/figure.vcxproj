@@ -158,7 +158,6 @@
   <ItemGroup>
     <ClInclude Include="CShapeComposite.h" />
     <ClInclude Include="CTriangleDecorator.h" />
-    <ClInclude Include="IShapeComposite.h" />
     <ClInclude Include="IShapeDecorator.h" />
     <ClInclude Include="CCircleDecorator.h" />
   </ItemGroup>

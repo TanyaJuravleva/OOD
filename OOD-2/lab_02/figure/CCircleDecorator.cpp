@@ -38,7 +38,6 @@ void CCircleDecorator::SetPosition(int x, int y) const
 
 sf::FloatRect CCircleDecorator::GetGlobalBounds() const
 {
-	//sf::FloatRect n(sf::Vector2f(m_circle->getGlobalBounds().getPosition().x, m_circle->getGlobalBounds().getPosition().y), m_circle->getGlobalBounds().getSize());
 	return m_circle->getGlobalBounds();
 }
 
@@ -72,7 +71,7 @@ std::vector<std::unique_ptr<IShapeDecorator>> CCircleDecorator::Remove()
 	return move(n);
 }
 
-//sf::Vector2f  CCircleDecorator::GetPosition() const
-//{
-//	return m_circle->getPosition();
-//}
+sf::Vector2f  CCircleDecorator::GetPosition() const
+{
+	return m_circle->getPosition();
+}
