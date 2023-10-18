@@ -10,11 +10,6 @@
 #include "CTriangleDecorator.h"
 #include "CShapeComposite.h"
 
-template <typename T>
-void remove(std::vector<T>& v, size_t index) {
-	v.erase(v.begin() + index);
-}
-
 bool CheckInputArguments(int argc, char* argv[])
 {
 	const std::string INPUT_ARGUMENTS = "Three input arguments";
@@ -68,7 +63,6 @@ std::vector<std::unique_ptr<IShapeDecorator>> GetArrayOfFiguresFromInpFile(char*
 			sf::RectangleShape rec;
 			rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
 			rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
-			//arrayOfShapes.emplace_back(std::make_unique<sf::RectangleShape>(rec));
 			auto recPtr = std::make_unique<sf::RectangleShape>(rec);
 			array.emplace_back(std::make_unique<CRectangleDecorator>(move(recPtr)));
 		}
@@ -121,7 +115,6 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	while (window.isOpen())
 	{
 		sf::Event event;
-		sf::Event eventKey;
 		window.clear();
 		window.setVerticalSyncEnabled(true);
 		for (int i = 0; i < arrayFigures.size(); i++)
@@ -295,7 +288,7 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		if (isNotGroup)
 		{
 			std::vector<std::unique_ptr<IShapeDecorator>> newArr;
-			newArr = arrayFigures[index]->Remove();
+			newArr = arrayFigures[index]->Ungroup();
 			bool found = false;
 			for (int i = 0; i < arrayFigures.size(); i++)
 			{	
@@ -344,43 +337,3 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
-/*sf::Vector2f(newRec->GetRightBottom().GetPointX() - newRec->GetWidth() / 2,
-	newRec->GetRightBottom().GetPointY() - newRec->GetHeight() / 2)*/
-
-	//auto newRec = std::make_unique<CRectangleDecorator>(rec, recTopPointX, recTopPointY, recBotPointX, recBotPointY);
-				/*rec.setSize(sf::Vector2f(newRec->GetWidth(), newRec->GetHeight()));
-				rec.setPosition(sf::Vector2f(newRec->GetLeftTop().GetPointX(), newRec->GetLeftTop().GetPointY()));*/
-
-				/*auto newTrian = std::make_unique <CTriangleDecorator>(trian, vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y);
-							trian.setPointCount(3);
-							trian.setPoint(0, sf::Vector2f(newTrian->GetVertex1().GetPointX(), newTrian->GetVertex1().GetPointY()));
-							trian.setPoint(1, sf::Vector2f(newTrian->GetVertex2().GetPointX(), newTrian->GetVertex2().GetPointY()));
-							trian.setPoint(2, sf::Vector2f(newTrian->GetVertex3().GetPointX(), newTrian->GetVertex3().GetPointY()));*/
-
-							/*for (int i = 0; i < arrayFigures.size(); i++)
-							{
-								for (int j = 0; j < vectorIndex.size(); j++)
-								{
-									if (i == vectorIndex[j])
-									{
-										found = true;
-										break;
-									}
-								}
-								if (!found)
-									IShapeDecorator nec = &arrayFigures[i];
-									newArr.push_back(nec);
-								else
-									found = false;
-							}*/
-
-							//for (int i = 0; i < vectorIndex.size(); i++)
-							//{
-							//	int ind = vectorIndex[i] - i;
-							//	//remove(arrayFigures, ind);
-							//}
-
-				//std::ofstream out("out.txt");
-				//out <</* newShape->GetName()*/arrayFigures[arrayFigures.size()-1]->GetName();
-				//out.close();

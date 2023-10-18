@@ -9,13 +9,15 @@ public:
 	std::string GetName() const override;
 	void Draw(sf::RenderWindow& window) const override;
 	std::string ToString() const override;
+
 	void SetPosition(int x, int y) const override;
+	sf::Vector2f GetPosition() const override;
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
-	void Add(std::unique_ptr<IShapeDecorator> shape);
-	std::vector<std::unique_ptr<IShapeDecorator>> Remove() override;
 	bool isGroup() const override;
-	sf::Vector2f GetPosition() const override;
+	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
+
+	void Add(std::unique_ptr<IShapeDecorator> shape);
 private:
 	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;
 };

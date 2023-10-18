@@ -1,68 +1,99 @@
-﻿  main.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(69,71): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+﻿  CCircleDecorator.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,24): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  CRectangleDecorator.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(37,30): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(37,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  CRectangleDecorator.h
+  CShapeComposite.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(209,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(69,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(210,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(70,47): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(355,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(70,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(356,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(81,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+  CTriangleDecorator.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(83,29): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(83,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  main.cpp
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,71): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(81,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(82,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(65,47): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(82,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(65,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(83,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(75,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(83,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(75,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(91,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(92,51): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(92,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(150,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(76,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(151,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(76,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(215,69): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(77,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(77,35): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(85,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(86,51): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(86,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(143,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(144,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(208,69): warning C4244: =: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=float
@@ -71,7 +102,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(215,69): warnin
           [
               T=int
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(216,69): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(209,69): warning C4244: =: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=float
@@ -80,7 +111,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(216,69): warnin
           [
               T=int
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(217,72): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(210,72): warning C4244: =: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=float
@@ -89,7 +120,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(217,72): warnin
           [
               T=int
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(218,72): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(211,72): warning C4244: =: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=float
@@ -98,26 +129,17 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(218,72): warnin
           [
               T=int
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(228,55): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(221,55): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(228,43): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(221,43): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(235,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(235,39): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(228,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -126,7 +148,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(235,39): warnin
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(236,50): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(228,39): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -135,7 +157,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(236,50): warnin
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(236,40): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(229,50): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -144,7 +166,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(236,40): warnin
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(252,70): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(229,40): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -153,7 +175,7 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(252,70): warnin
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(252,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(245,70): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -162,6 +184,16 @@ C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(252,60): warnin
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(291,36): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(124,13): warning C4101: eventKey: неиспользованная локальная переменная
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(245,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(284,36): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+x64\Debug\CRectangleDecorator.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
   figure.vcxproj -> C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\x64\Debug\figure.exe

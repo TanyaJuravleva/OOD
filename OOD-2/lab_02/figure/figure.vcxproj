@@ -152,7 +152,6 @@
     <ClCompile Include="CRectangleDecorator.h" />
     <ClCompile Include="CShapeComposite.cpp" />
     <ClCompile Include="CTriangleDecorator.cpp" />
-    <ClCompile Include="IShapeDecorator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,21 +1,24 @@
 #include "CTriangleDecorator.h"
 
-void CTriangleDecorator::Draw(sf::RenderWindow& window) const
-{
-	window.draw(*m_triangle);
-}
-std::string CTriangleDecorator::GetName() const
-{
-	return TRIAN_NAME;
-}
 double CTriangleDecorator::GetArea() const
 {
 	double p = (GetA() + GetB() + GetC()) / 2;
 	return sqrt(p * (p - GetA()) * (p - GetB()) * (p - GetC()));
 }
+
 double CTriangleDecorator::GetPerimeter() const
 {
 	return GetA() + GetB() + GetC();
+}
+
+std::string CTriangleDecorator::GetName() const
+{
+	return TRIAN_NAME;
+}
+
+void CTriangleDecorator::Draw(sf::RenderWindow& window) const
+{
+	window.draw(*m_triangle);
 }
 
 std::string CTriangleDecorator::ToString() const
@@ -73,23 +76,15 @@ double CTriangleDecorator::GetC() const
 	return c;
 }
 
-sf::Vector2f CTriangleDecorator::GetPosition() const
-{
-	return m_triangle->getPosition();
-}
 
 void CTriangleDecorator::SetPosition(int x, int y) const
 {
 	m_triangle->setPosition(x, y);
-	//auto pos = m_triangle->getPosition();
-	//auto p1 = m_triangle->getPoint(0);
-	//auto p2 = m_triangle->getPoint(1);
-	//auto p3 = m_triangle->getPoint(2);
-	//m_triangle->setPoint(0, sf::Vector2f(x + p1.x - pos.x, y + p1.y - pos.y));
-	//m_triangle->setPoint(1, sf::Vector2f(x + p2.x - pos.x, y + p2.y - pos.y));
-	//m_triangle->setPoint(2, sf::Vector2f(x + p3.x - pos.x, y + p3.y - pos.y));
-	//m_triangle->setPosition(x, y);
-	//m_triangle->move(x - m_triangle->getPosition().x, y - m_triangle->getPosition().y);
+}
+
+sf::Vector2f CTriangleDecorator::GetPosition() const
+{
+	return m_triangle->getPosition();
 }
 
 sf::FloatRect CTriangleDecorator::GetGlobalBounds() const
@@ -121,21 +116,8 @@ bool CTriangleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CTriangleDecorator::Remove()
+std::vector<std::unique_ptr<IShapeDecorator>> CTriangleDecorator::Ungroup()
 {
 	std::vector<std::unique_ptr<IShapeDecorator>> n;
 	return move(n);
 }
-
-//CPoint CTriangleDecorator::GetVertex1() const
-//{
-//	return m_vertex1;
-//}
-//CPoint CTriangleDecorator::GetVertex2() const
-//{
-//	return m_vertex2;
-//}
-//CPoint CTriangleDecorator::GetVertex3() const
-//{
-//	return m_vertex3;
-//}

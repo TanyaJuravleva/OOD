@@ -2,6 +2,27 @@
 
 #include "CCircleDecorator.h"
 
+double CCircleDecorator::GetArea() const
+{
+	return M_PI * m_circle->getRadius() * m_circle->getRadius();
+
+}
+
+double CCircleDecorator::GetPerimeter() const
+{
+	return 2 * M_PI * m_circle->getRadius();
+}
+
+std::string CCircleDecorator::GetName() const
+{
+	return CIRCLE_NAME;
+}
+
+void CCircleDecorator::Draw(sf::RenderWindow& window) const
+{
+	window.draw(*m_circle);
+}
+
 std::string CCircleDecorator::ToString() const
 {
 	const std::string CIRCLE_AREA = "S=";
@@ -13,27 +34,16 @@ std::string CCircleDecorator::ToString() const
 		CIRCLE_AREA + std::to_string(GetArea()) + COMMA +
 		CIRCLE_PERIMETER + std::to_string(GetPerimeter());
 }
-double CCircleDecorator::GetArea() const
-{
-	return M_PI * m_circle->getRadius() * m_circle->getRadius();
 
-}
-double CCircleDecorator::GetPerimeter() const
-{
-	return 2 * M_PI * m_circle->getRadius();
-}
-std::string CCircleDecorator::GetName() const
-{
-	return CIRCLE_NAME;
-}
-void CCircleDecorator::Draw(sf::RenderWindow& window) const
-{
-	window.draw(*m_circle);
-}
 
 void CCircleDecorator::SetPosition(int x, int y) const
 {
 	m_circle->setPosition(x, y);
+}
+
+sf::Vector2f  CCircleDecorator::GetPosition() const
+{
+	return m_circle->getPosition();
 }
 
 sf::FloatRect CCircleDecorator::GetGlobalBounds() const
@@ -65,13 +75,8 @@ bool CCircleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CCircleDecorator::Remove()
+std::vector<std::unique_ptr<IShapeDecorator>> CCircleDecorator::Ungroup()
 {
 	std::vector<std::unique_ptr<IShapeDecorator>> n;
 	return move(n);
-}
-
-sf::Vector2f  CCircleDecorator::GetPosition() const
-{
-	return m_circle->getPosition();
 }

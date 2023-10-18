@@ -2,6 +2,28 @@
 
 #include "CRectangleDecorator.h"
 
+double CRectangleDecorator::GetArea() const
+{
+	auto size = m_rectangle->getSize();
+	return (double)size.x * (double)size.y;
+}
+
+double CRectangleDecorator::GetPerimeter() const
+{
+	auto size = m_rectangle->getSize();
+	return 2 * ((double)size.x + (double)size.y);
+}
+
+std::string CRectangleDecorator::GetName() const
+{
+	return REC_NAME;
+}
+
+void CRectangleDecorator::Draw(sf::RenderWindow& window) const
+{
+	window.draw(*m_rectangle);
+}
+
 std::string CRectangleDecorator::ToString() const
 {
 	const std::string RECTANGLE_AREA = "S=";
@@ -13,28 +35,18 @@ std::string CRectangleDecorator::ToString() const
 		RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
 		RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
 }
-double CRectangleDecorator::GetArea() const
-{
-	auto size = m_rectangle->getSize();
-	return (double)size.x * (double)size.y;
-}
-double CRectangleDecorator::GetPerimeter() const
-{
-	auto size = m_rectangle->getSize();
-	return 2 * ((double)size.x + (double)size.y);
-}
-std::string CRectangleDecorator::GetName() const
-{
-	return REC_NAME;
-}
-void CRectangleDecorator::Draw(sf::RenderWindow& window) const
-{
-	window.draw(*m_rectangle);
-}
+
+
+
 
 void CRectangleDecorator::SetPosition(int x, int y) const
 {
 	m_rectangle->setPosition(x, y);
+}
+
+sf::Vector2f CRectangleDecorator::GetPosition() const
+{
+	return m_rectangle->getPosition();
 }
 
 sf::FloatRect CRectangleDecorator::GetGlobalBounds() const
@@ -66,33 +78,8 @@ bool CRectangleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CRectangleDecorator::Remove()
+std::vector<std::unique_ptr<IShapeDecorator>> CRectangleDecorator::Ungroup()
 {
 	std::vector<std::unique_ptr<IShapeDecorator>> n;
 	return move(n);
 }
-
-sf::Vector2f CRectangleDecorator::GetPosition() const
-{
-	return m_rectangle->getPosition();
-}
-
-//CPoint CRectangleDecorator::GetLeftTop() const
-//{
-//	return m_leftTop;
-//}
-//CPoint CRectangleDecorator::GetRightBottom() const
-//{
-//	return m_rightBottom;
-//}
-//int CRectangleDecorator::GetWidth() const
-//{
-//	return GetRightBottom().GetPointX() - GetLeftTop().GetPointX();
-//}
-//int CRectangleDecorator::GetHeight() const
-//{
-//	return GetRightBottom().GetPointY() - GetLeftTop().GetPointY();
-//}
-
-	/*return (double)GetWidth() * (double)GetHeight();*/
-	/*return 2 * (double)GetWidth() + (double)GetHeight();*/
