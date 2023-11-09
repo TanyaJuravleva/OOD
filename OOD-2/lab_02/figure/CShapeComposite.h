@@ -14,9 +14,8 @@ public:
 	sf::Vector2f GetPosition() const override;
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
-	bool isGroup() const override;
-	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
-
+	bool isGroup() const;
+	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup();
 	void Add(std::unique_ptr<IShapeDecorator> shape);
 private:
 	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;

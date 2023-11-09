@@ -24,6 +24,10 @@ public:
 	bool isGroup() const override;
 	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
 
+	void SetFillColour(sf::Color colour) override;
+	void SetOutlineThickness(int thicknessInPixel) override;
+	void SetOutlineColor(sf::Color colour) override;
+
 private:
 	std::unique_ptr<sf::RectangleShape> m_rectangle;
 };

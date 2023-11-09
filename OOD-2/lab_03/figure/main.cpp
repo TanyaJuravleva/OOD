@@ -9,6 +9,20 @@
 #include "CRectangleDecorator.h"
 #include "CTriangleDecorator.h"
 #include "CShapeComposite.h"
+#include "ICommand.h"
+#include "CChangeFillColourRed.h"
+#include "CChangeFillColourGreen.h"
+#include "CChangeFillColourBlue.h"
+#include "CChangeFillColourYellow.h"
+#include "CChangeOutlineThickness2.h"
+#include "CChangeOutlineThickness4.h"
+#include "CChangeOutlineColorRed.h"
+#include "CChangeOutlineColorBlue.h"
+#include "CChangeOutlineColorGreen.h"
+#include "CChangeOutlineColorYellow.h"
+#include "CAddNewCircle.h"
+#include "CAddNewRectangle.h"
+#include "CAddNewTriangle.h"
 
 bool CheckInputArguments(int argc, char* argv[])
 {
@@ -219,6 +233,12 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		if (isDraged)
 		{
 			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
+			CAddNewTriangle(arrayFigures).Execute();
+			//auto v = CChangeOutlineThickness4(arrayFigures[index]);
+			//v.Execute();
+			//CChangeOutlineColorYellow(arrayFigures[index]).Execute();
+			//auto v = CChangeFillColourYellow(arrayFigures[index]);
+			//v.Execute();
 		}
 		if (isSelect)
 		{

@@ -1,34 +1,34 @@
 ﻿  CCircleDecorator.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(36,24): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(41,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CCircleDecorator.cpp(41,24): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   CRectangleDecorator.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(37,30): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(37,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(44,30): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CRectangleDecorator.cpp(44,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   CRectangleDecorator.h
   CShapeComposite.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(209,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(59,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(210,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(60,37): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(355,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(164,12): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(356,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CShapeComposite.cpp(165,13): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
   CTriangleDecorator.cpp
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(83,29): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(83,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(82,29): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\CTriangleDecorator.cpp(82,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   main.cpp
 C:\Users\krill_000\source\repos\OOD\OOD-2\lab_02\figure\main.cpp(64,71): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with

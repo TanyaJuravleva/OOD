@@ -1,16 +1,9 @@
 #pragma once
 #include "IShapeDecorator.h"
-//#include "IShapeComposite.h"
 
-const std::string REC_NAME = "RECTANGLE";
-
-class CRectangleDecorator : public IShapeDecorator
+class CShapeComposite : public IShapeDecorator
 {
 public:
-	CRectangleDecorator(std::unique_ptr<sf::RectangleShape> rec)
-		: m_rectangle(move(rec))
-	{
-	}
 	double GetArea() const override;
 	double GetPerimeter() const override;
 	std::string GetName() const override;
@@ -23,7 +16,12 @@ public:
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
 	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
+	void Add(std::unique_ptr<IShapeDecorator> shape);
+
+	void SetFillColour(sf::Color colour) override;
+	void SetOutlineThickness(int thicknessInPixel) override;
+	void SetOutlineColor(sf::Color colour) override;
 
 private:
-	std::unique_ptr<sf::RectangleShape> m_rectangle;
+	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;
 };
