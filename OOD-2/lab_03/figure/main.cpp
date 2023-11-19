@@ -9,20 +9,23 @@
 #include "CRectangleDecorator.h"
 #include "CTriangleDecorator.h"
 #include "CShapeComposite.h"
-#include "ICommand.h"
-#include "CChangeFillColourRed.h"
-#include "CChangeFillColourGreen.h"
-#include "CChangeFillColourBlue.h"
-#include "CChangeFillColourYellow.h"
-#include "CChangeOutlineThickness2.h"
-#include "CChangeOutlineThickness4.h"
-#include "CChangeOutlineColorRed.h"
-#include "CChangeOutlineColorBlue.h"
-#include "CChangeOutlineColorGreen.h"
-#include "CChangeOutlineColorYellow.h"
-#include "CAddNewCircle.h"
-#include "CAddNewRectangle.h"
-#include "CAddNewTriangle.h"
+#include "CFigureMachine.h"
+#include "CStateChangeFillColor.h"
+#include "CStateChangeOutlineColor.h"
+//#include "ICommand.h"
+//#include "CChangeFillColourRed.h"
+//#include "CChangeFillColourGreen.h"
+//#include "CChangeFillColourBlue.h"
+//#include "CChangeFillColourYellow.h"
+//#include "CChangeOutlineThickness2.h"
+//#include "CChangeOutlineThickness4.h"
+//#include "CChangeOutlineColorRed.h"
+//#include "CChangeOutlineColorBlue.h"
+//#include "CChangeOutlineColorGreen.h"
+//#include "CChangeOutlineColorYellow.h"
+//#include "CAddNewCircle.h"
+//#include "CAddNewRectangle.h"
+//#include "CAddNewTriangle.h"
 
 bool CheckInputArguments(int argc, char* argv[])
 {
@@ -233,7 +236,13 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		if (isDraged)
 		{
 			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
-			CAddNewTriangle(arrayFigures).Execute();
+			//std::vector<int> it = { 1, 2 };
+			//CFigureMachine menu(arrayFigures, it);
+			//menu.ChangeOutlineThickless2();
+			//menu.AddTriangle();
+			//menu.SetFillColor();
+			//menu.ChangeColorOutlineYellow();
+			//CAddNewTriangle(arrayFigures).Execute();
 			//auto v = CChangeOutlineThickness4(arrayFigures[index]);
 			//v.Execute();
 			//CChangeOutlineColorYellow(arrayFigures[index]).Execute();
@@ -275,6 +284,11 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		{
 			if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
 			{
+				CFigureMachine menu(arrayFigures, vectorIndex);
+				//menu.ChangeOutlineThickless2();
+				//menu.AddTriangle();
+				menu.SetFillColor();
+				menu.ChangeColorFillBlue();
 				sort(vectorIndex.begin(), vectorIndex.end());
 				std::vector<std::unique_ptr<IShapeDecorator>> newArr;
 				auto newShape = std::make_unique<CShapeComposite>();

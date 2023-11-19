@@ -152,6 +152,7 @@
     <ClCompile Include="CRectangleDecorator.cpp" />
     <ClCompile Include="CRectangleDecorator.h" />
     <ClCompile Include="CShapeComposite.cpp" />
+    <ClCompile Include="CStateChangeFillColor.cpp" />
     <ClCompile Include="CTriangleDecorator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -169,11 +170,17 @@
     <ClInclude Include="CChangeOutlineColorYellow.h" />
     <ClInclude Include="CChangeOutlineThickness2.h" />
     <ClInclude Include="CChangeOutlineThickness4.h" />
+    <ClInclude Include="CFigureMachine.h" />
     <ClInclude Include="CShapeComposite.h" />
+    <ClInclude Include="CStateChangeFillColor.h" />
+    <ClInclude Include="CStateChangeOutlineColor.h" />
+    <ClInclude Include="CStateDragAndDrop.h" />
     <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IFigureMachine.h" />
     <ClInclude Include="IShapeDecorator.h" />
     <ClInclude Include="CCircleDecorator.h" />
+    <ClInclude Include="IState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

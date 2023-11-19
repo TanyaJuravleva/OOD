@@ -1,6 +1,7 @@
 #pragma once
 #include "ICommand.h"
 #include "IShapeDecorator.h"
+#include "CCircleDecorator.h"
 
 class CAddNewCircle : public ICommand
 {
