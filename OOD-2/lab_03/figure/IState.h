@@ -16,6 +16,7 @@ public:
 	virtual void AddTriangle() = 0;
 	virtual void ChangeOutlineThickless2() = 0;
 	virtual void ChangeOutlineThickless4() = 0;
+	virtual void Draw(sf::RenderWindow& window) = 0;
 	/*virtual void SetNewState(char ch) = 0;*/
 
 	virtual ~IState() = default;

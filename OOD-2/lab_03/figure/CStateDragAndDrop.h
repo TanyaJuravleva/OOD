@@ -82,6 +82,23 @@ public:
 			CChangeOutlineThickness4(m_figure.GetShapes()[arrInd[i]]).Execute();
 		}
 	}
+	void Draw(sf::RenderWindow& window) override
+	{
+		sf::Texture drAnDr;
+		sf::Texture fill;
+		drAnDr.loadFromFile("./ddO.jpg");
+		fill.loadFromFile("./fill.jpg");
+		auto dd = *m_figure.GetDD();
+		auto f = *m_figure.GetF();
+		dd.setTexture(drAnDr);
+		f.setTexture(fill);
+		//dd.setTexture(drAnDr);
+		//f.setTexture(fill);
+		window.draw(dd);
+		window.draw(f);
+		m_figure.SetDD(dd);
+		m_figure.SetF(f);
+	}
 private:
 	IFigureMachine& m_figure;
 };

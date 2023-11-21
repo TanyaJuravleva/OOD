@@ -101,6 +101,25 @@ public:
 	{
 		return;
 	}
+	void Draw(sf::RenderWindow& window) override
+	{
+		sf::Texture drAnDr;
+		sf::Texture fill;
+		drAnDr.loadFromFile("./dd.jpg");
+		fill.loadFromFile("./fillO.jpg");
+		auto dd = *m_figure.GetDD();
+		auto f = *m_figure.GetF();
+		dd.setTexture(drAnDr);
+		f.setTexture(fill);
+		window.draw(dd);
+		window.draw(f);
+		m_figure.SetDD(dd);
+		m_figure.SetF(f);
+		//m_figure.GetDD().setTexture(drAnDr);
+		//m_figure.GetF().setTexture(fill);
+		//window.draw(m_figure.GetDD());
+		//window.draw(m_figure.GetF());
+	}
 private:
 	IFigureMachine& m_figure;
 };

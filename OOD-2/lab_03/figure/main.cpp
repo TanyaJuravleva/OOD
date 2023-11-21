@@ -126,13 +126,21 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	const std::string WINDOW_NAME = "Draw figures";
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), WINDOW_NAME);
 	bool isDraged = false, isClick = false, isFrame = false, isSelect = false, select = false, isGroup = false, isNotGroup = false;
+	bool isTool = false;
 	int index = 0, dx = 0, dy = 0;
-	std::vector<int> vectorIndex;
-	sf::Vector2i oldPos, newPos;
+	std::vector<int> vectorIndex, ind;
+	sf::Vector2i oldPos, newPos, keyPos;
+
+	CFigureMachine menu(arrayFigures, ind);
 	while (window.isOpen())
 	{
 		sf::Event event;
 		window.clear();
+		menu.DrawPanel(window);
+		//menu.ChangeOutlineThickless2();
+		//menu.AddTriangle();
+		//menu.SetFillColor();
+		//menu.ChangeColorFillBlue();
 		window.setVerticalSyncEnabled(true);
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
@@ -188,6 +196,8 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 					{
 						isFrame = false;
 						isClick = false;
+						isTool = true;
+						keyPos = sf::Mouse::getPosition(window);
 					}
 					if (select)
 					{
@@ -233,6 +243,19 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 			}
 			
 		}
+		if (isTool)
+		{
+			//menu.SetNewIndexes(vectorIndex);
+			isTool = menu.Do(keyPos.x, keyPos.y);
+			//keyPos.x = -20;
+			//keyPos.y = -20;
+			//if (menu.GetGlobalBoundsddCir().contains(keyPos.x, keyPos.y))
+			//{
+			//	menu.AddCircle();
+			//}
+			
+			//isTool = false;
+		}
 		if (isDraged)
 		{
 			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
@@ -265,6 +288,8 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 						vectorIndex.push_back(i);
 					}
 				}
+				ind = vectorIndex;
+				menu.SetNewIndexes(ind);
 			}
 			else
 			{
@@ -284,11 +309,6 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		{
 			if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
 			{
-				CFigureMachine menu(arrayFigures, vectorIndex);
-				//menu.ChangeOutlineThickless2();
-				//menu.AddTriangle();
-				menu.SetFillColor();
-				menu.ChangeColorFillBlue();
 				sort(vectorIndex.begin(), vectorIndex.end());
 				std::vector<std::unique_ptr<IShapeDecorator>> newArr;
 				auto newShape = std::make_unique<CShapeComposite>();
@@ -342,6 +362,9 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		if (isFrame)
 		{
 			arrayFigures[index]->DrawFrame(window);
+			std::vector<int> t{index};
+			ind = t;
+			menu.SetNewIndexes(ind);
 		}
 		window.display();
 	}
