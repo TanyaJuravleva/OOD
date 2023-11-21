@@ -126,8 +126,8 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	const std::string WINDOW_NAME = "Draw figures";
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), WINDOW_NAME);
 	bool isDraged = false, isClick = false, isFrame = false, isSelect = false, select = false, isGroup = false, isNotGroup = false;
-	bool isTool = false;
-	int index = 0, dx = 0, dy = 0;
+	bool isTool = false, drag = true;
+	int dx = 0, dy = 0;
 	std::vector<int> vectorIndex, ind;
 	sf::Vector2i oldPos, newPos, keyPos;
 
@@ -137,10 +137,6 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		sf::Event event;
 		window.clear();
 		menu.DrawPanel(window);
-		//menu.ChangeOutlineThickless2();
-		//menu.AddTriangle();
-		//menu.SetFillColor();
-		//menu.ChangeColorFillBlue();
 		window.setVerticalSyncEnabled(true);
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
@@ -157,12 +153,17 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 			if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) && (event.type == sf::Event::MouseButtonPressed)) {
 				if (event.key.code == sf::Mouse::Left) {
 					isClick = true;
+					select = false;
+					isGroup = false;
+					isNotGroup = false;
 					isSelect = false;
 					for (int i = 0; i < arrayFigures.size(); i++)
 					{
 						if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
 						{
-							index = i;
+							//index = i;
+							vectorIndex.clear();
+							vectorIndex.push_back(i);
 							isDraged = true;
 							isFrame = true;
 							dx = pos.x - arrayFigures[i]->GetPosition().x;
@@ -178,6 +179,11 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 			{
 				if (event.key.code == sf::Mouse::Left) {
 					isSelect = false;
+					isGroup = false;
+					isNotGroup = false;
+					isDraged = false;
+					isFrame = false;
+					isClick = false;
 					select = true;
 					newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
 					oldPos = sf::Mouse::getPosition(window);
@@ -204,11 +210,12 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 						isSelect = true;
 						select = false;
 					}
-					else
-					{
-						newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
-						vectorIndex.clear();
-					}
+					//else
+					//{
+					//	newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
+					//	//if (!isNotGroup)
+					//	vectorIndex.clear();
+					//}
 				}
 			}
 
@@ -222,21 +229,24 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 			//Разгруппировка фигур
 			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::U)))
 			{
-				for (int i = 0; i < arrayFigures.size(); i++)
-				{
-					if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
-					{
-						index = i;
-					}
-				}
-				if ((arrayFigures[index])->isGroup())
+				//for (int i = 0; i < arrayFigures.size(); i++)
+				//{
+				//	if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
+				//	{
+				//		//index = i;
+				//		vectorIndex.clear();
+				//		vectorIndex.push_back(i);
+				//	}
+				//}
+				if (((arrayFigures[vectorIndex[0]])->isGroup()) && (vectorIndex.size() == 1))
 				{
 					newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
-					oldPos.x = arrayFigures[index]->GetGlobalBounds().getPosition().x;
-					oldPos.y = arrayFigures[index]->GetGlobalBounds().getPosition().y;
-					newPos.x = arrayFigures[index]->GetGlobalBounds().getPosition().x + arrayFigures[index]->GetGlobalBounds().getSize().x;
-					newPos.y = arrayFigures[index]->GetGlobalBounds().getPosition().y + arrayFigures[index]->GetGlobalBounds().getSize().y;
-					isSelect = true;
+					oldPos.x = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().x;
+					oldPos.y = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().y;
+					newPos.x = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().x + arrayFigures[vectorIndex[0]]->GetGlobalBounds().getSize().x;
+					newPos.y = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().y + arrayFigures[vectorIndex[0]]->GetGlobalBounds().getSize().y;
+					isGroup = false;
+					isSelect = false;
 					isFrame = false;
 					isNotGroup = true;
 				}
@@ -245,32 +255,17 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 		}
 		if (isTool)
 		{
-			//menu.SetNewIndexes(vectorIndex);
-			isTool = menu.Do(keyPos.x, keyPos.y);
-			//keyPos.x = -20;
-			//keyPos.y = -20;
-			//if (menu.GetGlobalBoundsddCir().contains(keyPos.x, keyPos.y))
-			//{
-			//	menu.AddCircle();
-			//}
-			
-			//isTool = false;
+			menu.SetNewIndexes(ind);
+			isTool = menu.Do(keyPos.x, keyPos.y, drag);
+			isFrame = true;
 		}
-		if (isDraged)
+		if ((isDraged) && (drag))
 		{
-			arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
-			//std::vector<int> it = { 1, 2 };
-			//CFigureMachine menu(arrayFigures, it);
-			//menu.ChangeOutlineThickless2();
-			//menu.AddTriangle();
-			//menu.SetFillColor();
-			//menu.ChangeColorOutlineYellow();
-			//CAddNewTriangle(arrayFigures).Execute();
-			//auto v = CChangeOutlineThickness4(arrayFigures[index]);
-			//v.Execute();
-			//CChangeOutlineColorYellow(arrayFigures[index]).Execute();
-			//auto v = CChangeFillColourYellow(arrayFigures[index]);
-			//v.Execute();
+			//arrayFigures[index]->SetPosition(pos.x - dx, pos.y - dy);
+			for (int i = 0; i < vectorIndex.size(); i++)
+			{
+				arrayFigures[vectorIndex[i]]->SetPosition(pos.x - dx, pos.y - dy);
+			}
 		}
 		if (isSelect)
 		{
@@ -284,12 +279,14 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 				{
 					if (arrayFigures[i]->GetGlobalBounds().intersects(rec.getGlobalBounds()))
 					{
-						arrayFigures[i]->DrawFrame(window);
+						//arrayFigures[i]->DrawFrame(window);
 						vectorIndex.push_back(i);
 					}
 				}
 				ind = vectorIndex;
-				menu.SetNewIndexes(ind);
+				isFrame = true;
+				isSelect = false;
+				//menu.SetNewIndexes(ind);
 			}
 			else
 			{
@@ -335,21 +332,25 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 				newArr.emplace_back(std::make_unique<CShapeComposite>());
 				newArr[newArr.size() - 1] = move(newShape);
 				arrayFigures = move(newArr);
-				index = arrayFigures.size() - 1;
+				vectorIndex.clear();
+				vectorIndex.push_back(arrayFigures.size() - 1);
+				//index = arrayFigures.size() - 1;
 			}
 			isGroup = false;
 		}
 		if (isNotGroup)
 		{
 			std::vector<std::unique_ptr<IShapeDecorator>> newArr;
-			newArr = arrayFigures[index]->Ungroup();
+			//newArr = arrayFigures[index]->Ungroup();
+			newArr = arrayFigures[vectorIndex[0]]->Ungroup();
 			bool found = false;
 			for (int i = 0; i < arrayFigures.size(); i++)
 			{	
-				if (i == index)
+				if (i == vectorIndex[0])
+				//if (i == index)
 				{
 					found = true;
-					break;
+					//break;
 				}
 				if (!found)
 					newArr.emplace_back(move(arrayFigures[i]));
@@ -357,14 +358,21 @@ void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 					found = false;
 			}
 			arrayFigures = move(newArr);
+			isSelect = true;
+			isFrame = true;
 			isNotGroup = false;
 		}
 		if (isFrame)
 		{
-			arrayFigures[index]->DrawFrame(window);
-			std::vector<int> t{index};
-			ind = t;
-			menu.SetNewIndexes(ind);
+			//arrayFigures[index]->DrawFrame(window);
+			//std::vector<int> t{index};
+			for (int i = 0; i < vectorIndex.size(); i++)
+			{
+				arrayFigures[vectorIndex[i]]->DrawFrame(window);
+			}
+			//std::vector<int> t{ vectorIndex };
+			ind = vectorIndex;
+			//menu.SetNewIndexes(ind);
 		}
 		window.display();
 	}

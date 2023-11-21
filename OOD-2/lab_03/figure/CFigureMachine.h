@@ -168,17 +168,18 @@ public:
 		m_indexes = newIndexes;
 	}
 
-	bool Do(int x, int y)
+	bool Do(int x, int y, bool& drag)
 	{
 		if (f.getGlobalBounds().contains(x, y))
 		{
 			SetFillColor();
-			m_state->AddCircle();
+			drag = false;
 			return true;
 		}
 		if (dd.getGlobalBounds().contains(x, y))
 		{
 			SetDragAndDrop();
+			drag = true;
 			return true;
 		}
 		if (ddCir.getGlobalBounds().contains(x, y))
@@ -199,52 +200,52 @@ public:
 		if (ddThick2.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeOutlineThickless2();
-			return true;
+			return false;
 		}
 		if (ddThick4.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeOutlineThickless4();
-			return true;
+			return false;
 		}
 		if (fLRed1.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorOutlineRed();
-			return true;
+			return false;
 		}
 		if (fLRed2.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorFillRed();
-			return true;
+			return false;
 		}
 		if (fLGreen1.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorOutlineGreen();
-			return true;
+			return false;
 		}
 		if (fLGreen2.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorFillGreen();
-			return true;
+			return false;
 		}
 		if (fLBlue1.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorOutlineBlue();
-			return true;
+			return false;
 		}
 		if (fLBlue2.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorFillBlue();
-			return true;
+			return false;
 		}
 		if (fLYellow1.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorOutlineYellow();
-			return true;
+			return false;
 		}
 		if (fLYellow2.getGlobalBounds().contains(x, y))
 		{
 			m_state->ChangeColorFillYellow();
-			return true;
+			return false;
 		}
 	}
 
