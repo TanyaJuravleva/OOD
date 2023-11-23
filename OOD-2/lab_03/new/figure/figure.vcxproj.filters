@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\buttonClass">
+      <UniqueIdentifier>{a1ffa169-6c3e-4c4f-9f42-d87b87109c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\stateShapes">
+      <UniqueIdentifier>{2d571aff-8b84-4fd7-a6df-513a8c81ba21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\toolBar">
+      <UniqueIdentifier>{9b67eb59-d61a-46c8-842c-b0094d194b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\commandClass">
+      <UniqueIdentifier>{94ee6bf5-de8a-4271-9be8-0a17616e486c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\decoratorClass">
+      <UniqueIdentifier>{07c9f5f4-3377-4607-860c-a74fc5a579a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\handlerClass">
+      <UniqueIdentifier>{47311d5d-2896-4a41-8e2a-86dfec2e26dc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CCircleDecorator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangleDecorator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CTriangleDecorator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CShapeComposite.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangleDecorator.h">
+      <Filter>Файлы заголовков\decoratorClass</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IToolButton.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonFillColor.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IStateShapes.h">
+      <Filter>Файлы заголовков\stateShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateDragAndDrop.h">
+      <Filter>Файлы заголовков\stateShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateOutlineColor.h">
+      <Filter>Файлы заголовков\stateShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateFillColor.h">
+      <Filter>Файлы заголовков\stateShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="IToolbar.h">
+      <Filter>Файлы заголовков\toolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolbar.h">
+      <Filter>Файлы заголовков\toolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>Файлы заголовков\commandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommandFillColor.h">
+      <Filter>Файлы заголовков\commandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonMode.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateThickness.h">
+      <Filter>Файлы заголовков\stateShapes</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommandThickness.h">
+      <Filter>Файлы заголовков\commandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonThickness.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonNoClick.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonAddFigure.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommandAddFigure.h">
+      <Filter>Файлы заголовков\commandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonOutlineColor.h">
+      <Filter>Файлы заголовков\buttonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CComandOutlineColor.h">
+      <Filter>Файлы заголовков\commandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCircleDecorator.h">
+      <Filter>Файлы заголовков\decoratorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CShapeComposite.h">
+      <Filter>Файлы заголовков\decoratorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CTriangleDecorator.h">
+      <Filter>Файлы заголовков\decoratorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IShapeDecorator.h">
+      <Filter>Файлы заголовков\decoratorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CHandler.h">
+      <Filter>Файлы заголовков\handlerClass</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
