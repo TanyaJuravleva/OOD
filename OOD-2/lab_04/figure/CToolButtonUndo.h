@@ -1,18 +1,18 @@
 #pragma once
+#include "Caretaker.h"
 //#include "IToolButton.h"
 //#include "IToolbar.h"
-//#include "CComandOutlineColor.h"
-//#include "IShapeDecorator.h"
+//#include "CCommandFillColor.h"
 
-class CToolButtonOutlineColor : public IToolButton
+class CToolButtonUndo : public IToolButton
 {
 public:
-	CToolButtonOutlineColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
+	CToolButtonUndo(std::string namePicture, int x, int y, Caretaker& taker, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
-		, m_color(color)
 		, m_bar(bar)
+		, m_taker(taker)
 	{
 	}
 	void Draw(sf::RenderWindow& window) override
@@ -28,7 +28,7 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
-			m_bar.ChangeOutlineColor(m_color);
+			m_taker.Undo();
 		}
 	}
 	bool isClick(sf::Vector2i pos)
@@ -43,7 +43,7 @@ private:
 	sf::String m_namePicture;
 	int m_x;
 	int m_y;
-	sf::Color m_color;
 	IToolbar& m_bar;
+	Caretaker& m_taker;
 	sf::Sprite button;
 };

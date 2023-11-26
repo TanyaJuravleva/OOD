@@ -4,6 +4,62 @@
 #include <string>
 #include <vector>
 #include <memory>
+//
+//#include <SFML/Window.hpp>
+//#include <SFML/Graphics.hpp>
+//#include <SFML/System.hpp>
+//
+////buttons
+//#include "IToolButton.h"
+//#include "CToolButtonUndo.h"
+//#include "CToolButtonThickness.h"
+//#include "CToolButtonOutlineColor.h"
+//#include "CToolButtonMode.h"
+//#include "CToolButtonFillColor.h"
+//#include "CToolButtonAddFigure.h"
+//#include "CButtonNoClick.h"
+//
+////commands
+//#include "CComandOutlineColor.h"
+//#include "CCommandAddFigure.h"
+//#include "CCommandFillColor.h"
+//#include "CCommandNewPosition.h"
+//#include "CCommandThickness.h"
+//#include "ICommand.h"
+//
+////decorator
+//#include "IShapeDecorator.h"
+//#include "CCircleDecorator.h"
+//#include "CRectangleDecorator.h"
+//#include "CTriangleDecorator.h"
+//#include "CShapeComposite.h"
+//
+////memento
+//#include "CMementoState.h"
+//#include "IMementoState.h"
+//
+////caretaker
+//#include "Caretaker.h"
+//
+////visitor
+//#include "CShapeFillColorVisitor.h"
+//#include "CShapeOutlineColorVisitor.h"
+//#include "CShapeOutlineThicknessVisitor.h"
+//#include "IShapeVisitor.h"
+//
+////state
+//#include "CStateAddFigure.h"
+//#include "CStateDragAndDrop.h"
+//#include "CStateFillColor.h"
+//#include "CStateOutlineColor.h"
+//#include "CStateThickness.h"
+//#include "IStateShapes.h"
+//
+////toolbar
+//#include "CToolbar.h"
+//#include "IToolbar.h"
+
+//#include "C"
 
 #include "IShapeDecorator.h"
 #include "CCircleDecorator.h"
@@ -11,6 +67,8 @@
 #include "CTriangleDecorator.h"
 #include "CShapeComposite.h"
 #include "CToolbar.h"
+//#include "CMementoState.h"
+//#include "IMementoState.h"
 
 class CHandler
 {
@@ -141,6 +199,9 @@ public:
 		sf::RectangleShape rec;
 
 		CToolbar menu(arrayFigures, vectorIndex);
+		Caretaker taker(menu);
+		auto buttonUndo = std::make_unique<CToolButtonUndo>("undo.jpg", 0, 100, taker, menu);
+		taker.Backup();
 		while (window.isOpen())
 		{
 			sf::Event event;
@@ -151,6 +212,7 @@ public:
 			{
 				arrayFigures[i]->Draw(window);
 			}
+			buttonUndo->Draw(window);
 			sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 			sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
 			while (window.pollEvent(event))
@@ -206,6 +268,7 @@ public:
 						if (isDraged)
 						{
 							isDraged = false;
+							taker.Backup();
 							continue;
 						}
 						if ((isClick) && (!isDraged))
@@ -214,7 +277,7 @@ public:
 							isClick = false;
 							isTool = true;
 							keyPos = sf::Mouse::getPosition(window);
-							if (!menu.isClick(keyPos))
+							if (!menu.isClick(keyPos) || (!buttonUndo->isClick(keyPos)))
 							{
 								vectorIndex.clear();
 							}
@@ -273,6 +336,11 @@ public:
 			{
 				//menu.SetNewIndexes(vectorIndex);
 				menu.ClickButtons(keyPos, drag);
+				//for (int i = 0; i < buttonsUndo.size(); i++)
+				//{
+					buttonUndo->ButtonClick(keyPos);
+				//}
+				taker.Backup();
 				isTool = false;
 				isFrame = true;
 			}
@@ -283,6 +351,7 @@ public:
 				sf::Vector2f posk = window.mapPixelToCoords(pixelPos);
 				//menu.SetNewIndexes(vectorIndex);
 				menu.DragAnDrop(posk.x - dx, posk.y - dy);
+				//isDraged = false;
 				//for (int i = 0; i < vectorIndex.size(); i++)
 				//{
 				//	arrayFigures[vectorIndex[i]]->SetPosition(pos.x - dx, pos.y - dy);

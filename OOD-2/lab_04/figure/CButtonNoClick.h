@@ -1,7 +1,7 @@
 #pragma once
-#include "IToolButton.h"
-#include "IToolbar.h"
-#include "CCommandFillColor.h"
+//#include "IToolButton.h"
+//#include "IToolbar.h"
+//#include "CCommandFillColor.h"
 
 class CButtonNoClick : public IToolButton
 {

@@ -155,6 +155,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Caretaker.h" />
     <ClInclude Include="CButtonNoClick.h" />
     <ClInclude Include="CComandOutlineColor.h" />
     <ClInclude Include="CCommandAddFigure.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="CCommandNewPosition.h" />
     <ClInclude Include="CCommandThickness.h" />
     <ClInclude Include="CHandler.h" />
+    <ClInclude Include="CMementoState.h" />
     <ClInclude Include="CShapeFillColorVisitor.h" />
     <ClInclude Include="CShapeOutlineColorVisitor.h" />
     <ClInclude Include="CShapeOutlineThicknessVisitor.h" />
@@ -177,8 +179,10 @@
     <ClInclude Include="CToolButtonMode.h" />
     <ClInclude Include="CToolButtonOutlineColor.h" />
     <ClInclude Include="CToolButtonThickness.h" />
+    <ClInclude Include="CToolButtonUndo.h" />
     <ClInclude Include="CTriangleDecorator.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="IMementoState.h" />
     <ClInclude Include="IShapeVisitor.h" />
     <ClInclude Include="IToolbar.h" />
     <ClInclude Include="IShapeDecorator.h" />

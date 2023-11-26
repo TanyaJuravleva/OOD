@@ -1,7 +1,7 @@
 #pragma once
-#include "IToolButton.h"
-#include "IToolbar.h"
-#include "CCommandThickness.h"
+//#include "IToolButton.h"
+//#include "IToolbar.h"
+//#include "CCommandThickness.h"
 
 class CToolButtonThickness : public IToolButton
 {

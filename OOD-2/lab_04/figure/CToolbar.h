@@ -4,9 +4,6 @@
 #include "CStateOutlineColor.h"
 #include "CStateThickness.h"
 #include "CStateDragAndDrop.h"
-#include "IStateShapes.h"
-
-#include "IModeToolbar.h"
 
 #include "IToolButton.h"
 #include "CToolButtonFillColor.h"
@@ -15,17 +12,19 @@
 #include "CButtonNoClick.h"
 #include "CToolButtonAddFigure.h"
 #include "CToolButtonOutlineColor.h"
-#include "IBar.h"
+#include "CToolButtonUndo.h"
 
 class CToolbar : public IToolbar
 {
 public:
+	std::unique_ptr<IStateShapes> m_state;
+	std::vector<CMementoState*> mementos;
 	CToolbar(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::vector<int>& indexes)
 	: m_shapes(shapes)
 	, m_indexes(indexes)
 	{
 		SetStateDragAndDrop();
-		Initialization();
+		Initialization();;
 	}
 	void Initialization() override
 	{
@@ -69,17 +68,15 @@ public:
 	{
 		m_state.reset(new CStateAddFigure(*this));
 	}
-
 	void SetStateThickness() override
 	{
 		m_state.reset(new CStateThickness(*this));
 	}
-
 	void SetOutlineColor() override
 	{
 		m_state.reset(new CStateOutlineColor(*this));
+		//this->Backup();
 	}
-
 	void SetStateDragAndDrop() override
 	{
 		m_state.reset(new CStateDragAndDrop(*this));
@@ -124,6 +121,12 @@ public:
 			return true;
 		}
 		bool t = false;
+		//for (int i = 0; i < buttonsUndo.size(); i++)
+		//{
+		//	t = buttonsUndo[i]->isClick(pos);
+		//	if (t)
+		//		break;
+		//}
 		for (int i = 0; i < buttonsDD.size(); i++)
 		{
 			t = buttonsDD[i]->isClick(pos);
@@ -167,6 +170,10 @@ public:
 			{
 				buttonsF[i]->ButtonClick(pos);
 			}
+			//for (int i = 0; i < buttonsUndo.size(); i++)
+			//{
+			//	buttonsUndo[i]->ButtonClick(pos);
+			//}
 		}
 	}
 	void DragAnDrop(int x, int y)
@@ -189,19 +196,45 @@ public:
 	{
 		m_state->AddFigure(shapes, name);
 	}
-	//void SetNewPosition(sf::Vector2i newPos) override
-	//{
-	//	m_state->SetNewPosition(newPos);
-	//}
 	void SetNewIndexes(std::vector<int>& newInd)
 	{
 		m_indexes = newInd;
 	}
-
+	//void Backup() override
+	//{
+	//	auto m = this->CreateMemento();
+ //       this->mementos.push_back(&m);
+ //   }
+ //   void Undo() override 
+	//{
+	//	if (!mementos.size()) {
+	//		return;
+	//	}
+	//	std::ofstream out("out.txt");
+	//	out << "n: " << mementos.size();
+	//	CMementoState* memento = mementos.back();
+	//	mementos.pop_back();
+	//	memento->GetState()->ChangeFillColor(sf::Color::Blue);
+	//	out << " k: " << mementos.size() << " g ";
+	//	out.close();
+ //       //try {
+ //       // this->SetMemento(*memento);
+ //       //}
+ //       //catch (...) {
+ //       //    this->Undo();
+ //       //}
+ //   }
+	void SetMemento(CMementoState memento) override
+	{
+		m_state = move(memento.GetState());
+	}
+	CMementoState CreateMemento() override
+	{
+		return CMementoState(m_state);
+	}
 private:
 	std::vector<std::unique_ptr<IShapeDecorator>>& m_shapes;
 	std::vector<int>& m_indexes;
-	std::unique_ptr<IStateShapes> m_state;
 	std::vector<std::unique_ptr<IToolButton>> buttonsDD;
 	std::vector<std::unique_ptr<IToolButton>> buttonsF;
 	std::vector<std::unique_ptr<IToolButton>> buttonsNoClick;

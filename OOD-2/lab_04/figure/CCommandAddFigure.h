@@ -1,10 +1,10 @@
 #pragma once
-#include "ICommand.h"
-#include "IShapeDecorator.h"
-#include "IToolbar.h"
-#include "CCircleDecorator.h"
-#include "CRectangleDecorator.h"
-#include "CTriangleDecorator.h"
+//#include "ICommand.h"
+//#include "IShapeDecorator.h"
+//#include "IToolbar.h"
+//#include "CCircleDecorator.h"
+//#include "CRectangleDecorator.h"
+//#include "CTriangleDecorator.h"
 
 class CCommandAddFigure : public ICommand
 {

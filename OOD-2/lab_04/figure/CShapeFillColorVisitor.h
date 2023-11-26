@@ -1,9 +1,9 @@
 #pragma once
-#include "IShapeVisitor.h"
+//#include "IShapeVisitor.h"
 //#include "CCircleDecorator.h"
 //#include "CRectangleDecorator.h"
 //#include "CTriangleDecorator.h"
-#include "CShapeComposite.h"
+//#include "CShapeComposite.h"
 
 //class CShapeFillColorVisitor : public IShapeVisitor
 //{

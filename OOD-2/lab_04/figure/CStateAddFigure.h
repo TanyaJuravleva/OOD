@@ -1,8 +1,8 @@
 #pragma once
-#include "IStateShapes.h"
-#include "IToolbar.h"
-#include "IShapeDecorator.h"
-#include "CCommandFillColor.h"
+//#include "IStateShapes.h"
+//#include "IToolbar.h"
+//#include "IShapeDecorator.h"
+//#include "CCommandFillColor.h"
 #include "CComandOutlineColor.h"
 #include "CCommandThickness.h"
 #include "CCommandAddFigure.h"

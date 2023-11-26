@@ -1,7 +1,9 @@
 #pragma once
 #include "ICommand.h"
-//#include "IShapeDecorator.h"
-#include "IToolbar.h"
+
+////#include "IShapeDecorator.h"
+//#include "IToolbar.h"
+
 #include "CShapeFillColorVisitor.h"
 
 class CCommandFillColor : public ICommand

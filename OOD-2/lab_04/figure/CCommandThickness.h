@@ -1,7 +1,8 @@
 #pragma once
-#include "ICommand.h"
-#include "IShapeDecorator.h"
-#include "IToolbar.h"
+//#include "ICommand.h"
+//#include "IShapeDecorator.h"
+//#include "IToolbar.h"
+
 #include "CShapeOutlineThicknessVisitor.h"
 
 class CCommandThickness : public ICommand

@@ -1,6 +1,6 @@
 #pragma once
-#include "IShapeDecorator.h"
-#include "IToolbar.h"
+//#include "IShapeDecorator.h"
+//#include "IToolbar.h"
 
 class IToolButton
 {

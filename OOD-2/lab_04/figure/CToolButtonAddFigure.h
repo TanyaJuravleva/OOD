@@ -1,8 +1,8 @@
 #pragma once
-#include "IToolButton.h"
-#include "IToolbar.h"
-#include "CCommandAddFigure.h"
-#include "IShapeDecorator.h"
+//#include "IToolButton.h"
+//#include "IToolbar.h"
+//#include "CCommandAddFigure.h"
+//#include "IShapeDecorator.h"
 
 class CToolButtonAddFigure : public IToolButton
 {

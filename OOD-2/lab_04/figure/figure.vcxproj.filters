@@ -34,6 +34,12 @@
     <Filter Include="Файлы заголовков\ShapeVisitorClass">
       <UniqueIdentifier>{bccff4a1-849d-410c-abe1-555565989eaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Memento">
+      <UniqueIdentifier>{b3b35003-f858-44fb-8aeb-7a6f1519ec55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Caretaker">
+      <UniqueIdentifier>{a0a1c3f1-449d-4daa-9f4c-fa74ba52281a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -145,6 +151,18 @@
     </ClInclude>
     <ClInclude Include="CShapeOutlineThicknessVisitor.h">
       <Filter>Файлы заголовков\ShapeVisitorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CMementoState.h">
+      <Filter>Файлы заголовков\Memento</Filter>
+    </ClInclude>
+    <ClInclude Include="Caretaker.h">
+      <Filter>Файлы заголовков\Caretaker</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButtonUndo.h">
+      <Filter>Файлы заголовков\ButtonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IMementoState.h">
+      <Filter>Файлы заголовков\Memento</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
