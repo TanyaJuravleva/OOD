@@ -3,14 +3,13 @@
 #include "IToolbar.h"
 #include "CCommandFillColor.h"
 
-class CToolButtonFillColor : public IToolButton
+class CButtonNoClick : public IToolButton
 {
 public:
-	CToolButtonFillColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
+	CButtonNoClick(std::string namePicture, int x, int y, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
-		, m_color(color)
 		, m_bar(bar)
 	{
 	}
@@ -25,16 +24,16 @@ public:
 	}
 	void ButtonClick(sf::Vector2i pos) override
 	{
-		if (button.getGlobalBounds().contains(pos.x, pos.y))
-		{
-			m_bar.ChangeFillColor(m_color);
-		}
+		return;
+	}
+	bool isClick(sf::Vector2i pos)
+	{
+		return false;
 	}
 private:
 	sf::String m_namePicture;
 	int m_x;
 	int m_y;
-	sf::Color m_color;
 	IToolbar& m_bar;
 	sf::Sprite button;
 };

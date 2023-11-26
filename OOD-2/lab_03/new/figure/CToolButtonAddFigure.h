@@ -31,7 +31,6 @@ public:
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
 			m_bar.AddFigure(m_shapes, m_name);
-			//CCommandAddFigure(m_bar, m_shapes, m_name).Execute();
 		}
 	}
 private:

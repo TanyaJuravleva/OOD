@@ -31,6 +31,9 @@
     <Filter Include="Файлы заголовков\ButtonClass">
       <UniqueIdentifier>{a1ffa169-6c3e-4c4f-9f42-d87b87109c3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\ShapeVisitorClass">
+      <UniqueIdentifier>{bccff4a1-849d-410c-abe1-555565989eaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,7 +65,7 @@
     <ClInclude Include="IStateShapes.h">
       <Filter>Файлы заголовков\StateShapesClass</Filter>
     </ClInclude>
-    <ClInclude Include="CStateDragAndDrop.h">
+    <ClInclude Include="CStateAddFigure.h">
       <Filter>Файлы заголовков\StateShapesClass</Filter>
     </ClInclude>
     <ClInclude Include="CStateOutlineColor.h">
@@ -124,6 +127,24 @@
     </ClInclude>
     <ClInclude Include="CHandler.h">
       <Filter>Файлы заголовков\HandlerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateDragAndDrop.h">
+      <Filter>Файлы заголовков\StateShapesClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommandNewPosition.h">
+      <Filter>Файлы заголовков\CommandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IShapeVisitor.h">
+      <Filter>Файлы заголовков\ShapeVisitorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CShapeFillColorVisitor.h">
+      <Filter>Файлы заголовков\ShapeVisitorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CShapeOutlineColorVisitor.h">
+      <Filter>Файлы заголовков\ShapeVisitorClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CShapeOutlineThicknessVisitor.h">
+      <Filter>Файлы заголовков\ShapeVisitorClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

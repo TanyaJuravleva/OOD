@@ -1,12 +1,13 @@
 #pragma once
 #include "IToolButton.h"
 #include "IToolbar.h"
-#include "CCommandFillColor.h"
+#include "CComandOutlineColor.h"
+#include "IShapeDecorator.h"
 
-class CToolButtonFillColor : public IToolButton
+class CToolButtonOutlineColor : public IToolButton
 {
 public:
-	CToolButtonFillColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
+	CToolButtonOutlineColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
@@ -27,8 +28,16 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
-			m_bar.ChangeFillColor(m_color);
+			m_bar.ChangeOutlineColor(m_color);
 		}
+	}
+	bool isClick(sf::Vector2i pos)
+	{
+		if (button.getGlobalBounds().contains(pos.x, pos.y))
+		{
+			return true;
+		}
+		return false;
 	}
 private:
 	sf::String m_namePicture;

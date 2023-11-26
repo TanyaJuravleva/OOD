@@ -5,6 +5,7 @@
 #include "CComandOutlineColor.h"
 #include "CCommandThickness.h"
 #include "CCommandAddFigure.h"
+#include "CCommandNewPosition.h"
 
 class CStateThickness : public IStateShapes
 {
@@ -23,14 +24,19 @@ public:
 		CComandOutlineColor(m_bar, color).Execute();
 		m_bar.SetOutlineColor();
 	}
-	virtual void ChangeThickness(int thick)
+	void ChangeThickness(int thick) override
 	{
 		CCommandThickness(m_bar, thick).Execute();
 		m_bar.SetStateThickness();
 	}
-	virtual void AddFigure(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name)
+	void AddFigure(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name) override
 	{
 		CCommandAddFigure(m_bar, shapes, name).Execute();
+		m_bar.SetStateAddFigure();
+	}
+	void SetNewPosition(int x, int y)  override
+	{
+		CCommandNewPosition(m_bar, x, y).Execute();
 		m_bar.SetStateDragAndDrop();
 	}
 

@@ -29,7 +29,6 @@ public:
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
 			m_bar.ChangeOutlineColor(m_color);
-			//CComandOutlineColor(m_bar, m_color).Execute();
 		}
 	}
 private:

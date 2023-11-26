@@ -1,16 +1,19 @@
 #pragma once
 #include "IToolButton.h"
 #include "IToolbar.h"
-#include "CCommandFillColor.h"
+#include "CCommandAddFigure.h"
+#include "IShapeDecorator.h"
 
-class CToolButtonFillColor : public IToolButton
+class CToolButtonAddFigure : public IToolButton
 {
 public:
-	CToolButtonFillColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
+	CToolButtonAddFigure(std::string namePicture, int x, int y,
+		std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
-		, m_color(color)
+		, m_name(name)
+		, m_shapes(shapes)
 		, m_bar(bar)
 	{
 	}
@@ -27,14 +30,23 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
-			m_bar.ChangeFillColor(m_color);
+			m_bar.AddFigure(m_shapes, m_name);
 		}
+	}
+	bool isClick(sf::Vector2i pos)
+	{
+		if (button.getGlobalBounds().contains(pos.x, pos.y))
+		{
+			return true;
+		}
+		return false;
 	}
 private:
 	sf::String m_namePicture;
+	std::string m_name;
+	std::vector<std::unique_ptr<IShapeDecorator>>& m_shapes;
 	int m_x;
 	int m_y;
-	sf::Color m_color;
 	IToolbar& m_bar;
 	sf::Sprite button;
 };

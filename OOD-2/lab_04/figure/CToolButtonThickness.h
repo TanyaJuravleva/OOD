@@ -1,16 +1,16 @@
 #pragma once
 #include "IToolButton.h"
 #include "IToolbar.h"
-#include "CCommandFillColor.h"
+#include "CCommandThickness.h"
 
-class CToolButtonFillColor : public IToolButton
+class CToolButtonThickness : public IToolButton
 {
 public:
-	CToolButtonFillColor(std::string namePicture, int x, int y, sf::Color color, IToolbar& bar)
+	CToolButtonThickness(std::string namePicture, int x, int y, int thick, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
-		, m_color(color)
+		, m_thick(thick)
 		, m_bar(bar)
 	{
 	}
@@ -27,14 +27,22 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
-			m_bar.ChangeFillColor(m_color);
+			m_bar.ChangeThickness(m_thick);
 		}
+	}
+	bool isClick(sf::Vector2i pos)
+	{
+		if (button.getGlobalBounds().contains(pos.x, pos.y))
+		{
+			return true;
+		}
+		return false;
 	}
 private:
 	sf::String m_namePicture;
 	int m_x;
 	int m_y;
-	sf::Color m_color;
+	int m_thick;
 	IToolbar& m_bar;
 	sf::Sprite button;
 };

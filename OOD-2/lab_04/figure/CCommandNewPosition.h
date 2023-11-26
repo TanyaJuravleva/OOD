@@ -3,12 +3,13 @@
 #include "IShapeDecorator.h"
 #include "IToolbar.h"
 
-class CComandOutlineColor : public ICommand
+class CCommandNewPosition : public ICommand
 {
 public:
-	CComandOutlineColor(IToolbar& bar, sf::Color color)
+	CCommandNewPosition(IToolbar& bar, int x, int y)
 		: m_bar(bar)
-		, m_color(color)
+		, m_x(x)
+		, m_y(y)
 	{
 	}
 	void Execute() override
@@ -16,10 +17,11 @@ public:
 		auto arrInd = m_bar.GetIndexes();
 		for (int i = 0; i < arrInd.size(); i++)
 		{
-			m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(m_color);
+			m_bar.GetShapes()[arrInd[i]]->SetPosition(m_x, m_y);
 		}
 	}
 private:
 	IToolbar& m_bar;
-	sf::Color m_color;
+	int m_x;
+	int m_y;
 };

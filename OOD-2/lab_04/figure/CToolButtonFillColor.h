@@ -30,6 +30,14 @@ public:
 			m_bar.ChangeFillColor(m_color);
 		}
 	}
+	bool isClick(sf::Vector2i pos)
+	{
+		if (button.getGlobalBounds().contains(pos.x, pos.y))
+		{
+			return true;
+		}
+		return false;
+	}
 private:
 	sf::String m_namePicture;
 	int m_x;

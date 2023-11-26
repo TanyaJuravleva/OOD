@@ -28,7 +28,6 @@ public:
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
 			m_bar.ChangeThickness(m_thick);
-			//CCommandThickness(m_bar, m_thick).Execute();
 		}
 	}
 private:

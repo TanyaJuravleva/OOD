@@ -2,6 +2,7 @@
 #include "ICommand.h"
 #include "IShapeDecorator.h"
 #include "IToolbar.h"
+#include "CShapeOutlineColorVisitor.h"
 
 class CComandOutlineColor : public ICommand
 {
@@ -16,7 +17,9 @@ public:
 		auto arrInd = m_bar.GetIndexes();
 		for (int i = 0; i < arrInd.size(); i++)
 		{
-			m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(m_color);
+			CShapeOutlineColorVisitor visitor(m_color);
+			m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(visitor);
+			//m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(m_color);
 		}
 	}
 private:
