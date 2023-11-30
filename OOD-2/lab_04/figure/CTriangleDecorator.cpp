@@ -116,10 +116,10 @@ bool CTriangleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CTriangleDecorator::Ungroup()
+std::vector<IShapeDecorator*> CTriangleDecorator::Ungroup()
 {
-	std::vector<std::unique_ptr<IShapeDecorator>> n;
-	return move(n);
+	std::vector<IShapeDecorator*> n;
+	return n;
 }
 
 //void CTriangleDecorator::SetFillColour(sf::Color colour)

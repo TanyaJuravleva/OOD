@@ -17,9 +17,10 @@
 class CToolbar : public IToolbar
 {
 public:
-	std::unique_ptr<IStateShapes> m_state;
-	std::vector<CMementoState*> mementos;
-	CToolbar(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::vector<int>& indexes)
+	IStateShapes* m_state;
+	std::vector<IShapeDecorator*>& m_shapes;
+	std::vector<int>& m_indexes;
+	CToolbar(std::vector<IShapeDecorator*>& shapes, std::vector<int>& indexes)
 	: m_shapes(shapes)
 	, m_indexes(indexes)
 	{
@@ -62,24 +63,28 @@ public:
 	}
 	void SetStateFillColor() override
 	{
-		m_state.reset(new CStateFillColor(*this));
+		//m_state.reset(new CStateFillColor(*this));
+		m_state = new CStateFillColor(*this);
 	}
 	void SetStateAddFigure() override
 	{
-		m_state.reset(new CStateAddFigure(*this));
+		//m_state.reset(new CStateAddFigure(*this));
+		m_state = new CStateAddFigure(*this);
 	}
 	void SetStateThickness() override
 	{
-		m_state.reset(new CStateThickness(*this));
+	//	m_state.reset(new CStateThickness(*this));
+		m_state = new CStateThickness(*this);
 	}
 	void SetOutlineColor() override
 	{
-		m_state.reset(new CStateOutlineColor(*this));
-		//this->Backup();
+		//m_state.reset(new CStateOutlineColor(*this));
+		m_state = new CStateOutlineColor(*this);
 	}
 	void SetStateDragAndDrop() override
 	{
-		m_state.reset(new CStateDragAndDrop(*this));
+	//	m_state.reset(new CStateDragAndDrop(*this));
+		m_state = new CStateDragAndDrop(*this);
 	}
 
 	std::vector<int> GetIndexes() override
@@ -87,7 +92,7 @@ public:
 		return m_indexes;
 	}
 
-	std::vector<std::unique_ptr<IShapeDecorator>>& GetShapes() override
+	std::vector<IShapeDecorator*>& GetShapes() override
 	{
 		return m_shapes;
 	}
@@ -192,9 +197,9 @@ public:
 	{
 		m_state->ChangeThickness(thick);
 	}
-	void AddFigure(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name) override
+	void AddFigure(std::vector<IShapeDecorator*>& shapes, std::string name) override
 	{
-		m_state->AddFigure(shapes, name);
+		m_state->AddFigure(m_shapes, name);
 	}
 	void SetNewIndexes(std::vector<int>& newInd)
 	{
@@ -226,15 +231,40 @@ public:
  //   }
 	void SetMemento(CMementoState memento) override
 	{
-		m_state = move(memento.GetState());
+		//try
+		//{
+			//auto a = memento.GetState();
+			//auto k = a->GetIndexes();
+	//	}
+		//catch (...)
+		//{
+
+		//}
+		//auto a = memento.GetState()->GetIndexes();
+		//std::ofstream out("out.txt");
+		//out << a[0];
+		//out.close();
+		m_shapes = memento.GetState()->GetShapes();
+		m_indexes = memento.GetState()->GetIndexes();
+		//try {
+			//auto m = memento.GetState().get();
+		//}
+		//catch(...)
+		//{
+		//	AddFigure(m_shapes, "circle");
+		//}
+		//m->AddFigure(m_shapes, "circle");
+		//m_state.reset();
+		//m_state.reset(memento.GetState().get());
+	    //m_state = move(memento.GetState());
+		//m_shapes = memento.GetState()->
 	}
-	CMementoState CreateMemento() override
+	CMementoState* CreateMemento() override
 	{
-		return CMementoState(m_state);
+		CMementoState* m = new CMementoState(m_state);
+		return m;
 	}
 private:
-	std::vector<std::unique_ptr<IShapeDecorator>>& m_shapes;
-	std::vector<int>& m_indexes;
 	std::vector<std::unique_ptr<IToolButton>> buttonsDD;
 	std::vector<std::unique_ptr<IToolButton>> buttonsF;
 	std::vector<std::unique_ptr<IToolButton>> buttonsNoClick;

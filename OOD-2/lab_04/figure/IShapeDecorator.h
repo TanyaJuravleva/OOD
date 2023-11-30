@@ -18,11 +18,14 @@ public:
 	virtual sf::FloatRect GetGlobalBounds() const = 0;
 	virtual void DrawFrame(sf::RenderWindow& window) const = 0;
 	virtual bool isGroup() const = 0;
-	virtual std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() = 0;
+	virtual std::vector<IShapeDecorator*> Ungroup() = 0;
 
 	//virtual void SetFillColour(sf::Color colour) = 0;
 	virtual void SetFillColor(IShapeVisitor& visitor) const = 0;
 	virtual void SetOutlineThickness(IShapeVisitor& visitor) const = 0;
 	virtual void SetOutlineColor(IShapeVisitor& visitor) const = 0;
+
+	virtual IShapeDecorator* Clone() = 0;
+
 	virtual ~IShapeDecorator() = default;
 };

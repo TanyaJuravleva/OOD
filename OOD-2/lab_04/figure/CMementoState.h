@@ -30,18 +30,19 @@
 class CMementoState
 {
 public:
-	CMementoState(std::unique_ptr<IStateShapes>& state)
+	CMementoState(IStateShapes* state)
 		:m_state(state)
 	{
 	}
-	std::unique_ptr<IStateShapes> GetState()
+	IStateShapes* GetState()
 	{
-		return move(m_state);
+		return m_state;
 	}
+	
 	//void SetState()
 	//{
 	//	return move(m_state);
 	//}
 private:
-	std::unique_ptr<IStateShapes>& m_state;
+	IStateShapes* m_state;
 };

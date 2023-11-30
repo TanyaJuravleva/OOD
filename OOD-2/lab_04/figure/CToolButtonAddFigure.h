@@ -8,7 +8,7 @@ class CToolButtonAddFigure : public IToolButton
 {
 public:
 	CToolButtonAddFigure(std::string namePicture, int x, int y,
-		std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name, IToolbar& bar)
+		std::vector<IShapeDecorator*>& shapes, std::string name, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
@@ -44,7 +44,7 @@ public:
 private:
 	sf::String m_namePicture;
 	std::string m_name;
-	std::vector<std::unique_ptr<IShapeDecorator>>& m_shapes;
+	std::vector<IShapeDecorator*>& m_shapes;
 	int m_x;
 	int m_y;
 	IToolbar& m_bar;

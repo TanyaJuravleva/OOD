@@ -6,8 +6,8 @@ const std::string REC_NAME = "RECTANGLE";
 class CRectangleDecorator : public IShapeDecorator
 {
 public:
-	CRectangleDecorator(std::unique_ptr<sf::RectangleShape> rec)
-		: m_rectangle(move(rec))
+	CRectangleDecorator(sf::RectangleShape* rec)
+		 : m_rectangle(rec)
 	{
 	}
 	double GetArea() const override;
@@ -21,7 +21,7 @@ public:
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
-	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
+	std::vector<IShapeDecorator*> Ungroup() override;
 
 	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
@@ -46,11 +46,23 @@ public:
 		}
 	}
 
-	const std::unique_ptr<sf::RectangleShape>& GetConcreteFigure() const
+	sf::RectangleShape* GetConcreteFigure() const
 	{
 		return m_rectangle;
 	}
 
+	IShapeDecorator* Clone() override
+	{
+		sf::RectangleShape* rec = new sf::RectangleShape;
+		rec->setSize(m_rectangle->getSize());
+		rec->setFillColor(m_rectangle->getFillColor());
+		rec->setOutlineColor(m_rectangle->getOutlineColor());
+		rec->setOutlineThickness(m_rectangle->getOutlineThickness());
+		rec->setPosition(m_rectangle->getPosition());
+		IShapeDecorator* f = new CRectangleDecorator(rec);
+		return f;
+	}
+
 private:
-	std::unique_ptr<sf::RectangleShape> m_rectangle;
+	sf::RectangleShape* m_rectangle;
 };

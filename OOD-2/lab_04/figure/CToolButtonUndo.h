@@ -29,6 +29,7 @@ public:
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
 			m_taker.Undo();
+			m_taker.Backup();
 		}
 	}
 	bool isClick(sf::Vector2i pos)

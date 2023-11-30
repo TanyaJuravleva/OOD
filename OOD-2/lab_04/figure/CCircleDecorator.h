@@ -6,8 +6,8 @@ const std::string CIRCLE_NAME = "CIRCLE";
 class CCircleDecorator : public IShapeDecorator
 {
 public:
-	CCircleDecorator(std::unique_ptr<sf::CircleShape> circle)
-		: m_circle(move(circle))
+	CCircleDecorator(sf::CircleShape* circle)
+		: m_circle(circle)
 	{
 	}
 	double GetArea() const override;
@@ -21,7 +21,7 @@ public:
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
-	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
+	std::vector<IShapeDecorator*> Ungroup() override;
 
 	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
@@ -46,10 +46,20 @@ public:
 		}
 	}
 
-	const std::unique_ptr<sf::CircleShape>& GetConcreteFigure() const
+	sf::CircleShape* GetConcreteFigure() const
 	{
 		return m_circle;
 	}
+	IShapeDecorator* Clone() override
+	{
+		sf::CircleShape* circle = new sf::CircleShape(m_circle->getRadius());
+		circle->setFillColor(m_circle->getFillColor());
+		circle->setOutlineColor(m_circle->getOutlineColor());
+		circle->setOutlineThickness(m_circle->getOutlineThickness());
+		circle->setPosition(m_circle->getPosition());
+		IShapeDecorator* f = new CCircleDecorator(circle);
+		return f;
+	}
 private:
-	std::unique_ptr<sf::CircleShape> m_circle;
+	sf::CircleShape* m_circle;
 };

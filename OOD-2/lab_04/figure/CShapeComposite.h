@@ -15,8 +15,8 @@ public:
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
-	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
-	void Add(std::unique_ptr<IShapeDecorator> shape);
+	std::vector<IShapeDecorator*> Ungroup() override;
+	void Add(IShapeDecorator* shape);
 
 	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
@@ -30,7 +30,7 @@ public:
 	{ 
 		return m_shapes.size(); 
 	}
-	const std::unique_ptr<IShapeDecorator>& GetShape(int index) const
+	const IShapeDecorator* GetShape(int index) const
 	{
 		return m_shapes[index];
 	}
@@ -49,7 +49,16 @@ public:
 			v->Visit(*this);
 		}
 	}
+	IShapeDecorator* Clone() override
+	{
+		CShapeComposite* f = new CShapeComposite();
+		for (int i = 0; i < m_shapes.size(); i++)
+		{
+			f->Add(m_shapes[i]->Clone());
+		}
+		return f;
+	}
 
 private:
-	std::vector<std::unique_ptr<IShapeDecorator>> m_shapes;
+	std::vector<IShapeDecorator*> m_shapes;
 };

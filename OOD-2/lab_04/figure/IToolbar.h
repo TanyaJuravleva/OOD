@@ -24,19 +24,19 @@ public:
 	virtual void ClickButtons(sf::Vector2i pos, bool& drag) = 0;
 	virtual void DragAnDrop(int x, int y) = 0;
 	virtual std::vector<int> GetIndexes() = 0;
-	virtual std::vector<std::unique_ptr<IShapeDecorator>>& GetShapes() = 0;
+	virtual std::vector<IShapeDecorator*>& GetShapes() = 0;
 	virtual void SetNewIndexes(std::vector<int>& newInd) = 0;
 
 	virtual void ChangeFillColor(sf::Color color) = 0;
 	virtual void ChangeOutlineColor(sf::Color color) = 0;
 	virtual void ChangeThickness(int thick) = 0;
-	virtual void AddFigure(std::vector<std::unique_ptr<IShapeDecorator>>& shapes, std::string name) = 0;
+	virtual void AddFigure(std::vector<IShapeDecorator*>& shapes, std::string name) = 0;
 	virtual bool isClick(sf::Vector2i pos) = 0;
 
 	//virtual void Undo() = 0;
 	//virtual void Backup() = 0;
 	virtual void SetMemento(CMementoState memento) = 0;
-	virtual CMementoState CreateMemento() = 0;
+	virtual CMementoState* CreateMemento() = 0;
 
 	//virtual std::unique_ptr<IStateShapes> GetState() = 0;
 	//virtual std::unique_ptr<CMementoState> GetMemento() = 0;
@@ -52,18 +52,19 @@ public:
     }
     void Backup() {
         auto m = m_originator.CreateMemento();
-        this->mementos.push_back(&m);
+        this->mementos.push_back(m);
     }
     void Undo() {
-        if (!mementos.size()) {
+        if (mementos.size() < 2) {
             return;
         }
+        mementos.pop_back();
         CMementoState* memento = mementos.back();
         mementos.pop_back();
         try {
              m_originator.SetMemento(*memento);
         }
-        catch (...) {
+       catch (...) {
             this->Undo();
         }
     }

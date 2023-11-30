@@ -141,37 +141,34 @@ public:
 			if (figureName == RECTANGLE)
 			{
 				inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
-				sf::RectangleShape* rec = new sf::RectangleShape;
-				rec->setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
-				rec->setPosition(sf::Vector2f(recTopPointX, recTopPointY));
-				IShapeDecorator* f = new CRectangleDecorator(rec);
+				sf::RectangleShape rec;
+				rec.setSize(sf::Vector2f(recBotPointX - recTopPointX, recBotPointY - recTopPointY));
+				rec.setPosition(sf::Vector2f(recTopPointX, recTopPointY));
+				auto recPtr = std::make_unique<sf::RectangleShape>(rec);
+				IShapeDecorator* f = new CRectangleDecorator(move(recPtr));
 				array.push_back(f);
 			}
 
 			if (figureName == TRIANGLE)
 			{
 				inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
-				sf::ConvexShape* trian = new sf::ConvexShape;
-				trian->setPointCount(3);
-				trian->setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
-				trian->setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
-				trian->setPoint(2, sf::Vector2f(vertex3_x, vertex3_y));
-				//auto trianPtr = std::make_unique<sf::ConvexShape>(trian);
-				//array.emplace_back(std::make_unique <CTriangleDecorator>(move(trianPtr)));*/
-				IShapeDecorator* f = new CTriangleDecorator(trian);
-				array.push_back(f);
+				/*sf::ConvexShape trian;
+				trian.setPointCount(3);
+				trian.setPoint(0, sf::Vector2f(vertex1_x, vertex1_y));
+				trian.setPoint(1, sf::Vector2f(vertex2_x, vertex2_y));
+				trian.setPoint(2, sf::Vector2f(vertex3_x, vertex3_y));
+				auto trianPtr = std::make_unique<sf::ConvexShape>(trian);
+				array.emplace_back(std::make_unique <CTriangleDecorator>(move(trianPtr)));*/
 			}
 
 			if (figureName == CIRCLE)
 			{
-				inpFile >> center_x >> center_y >> radius;
-				sf::CircleShape* circle = new sf::CircleShape(radius);
-				circle->setPosition(center_x - radius, center_y - radius);
+				//inpFile >> center_x >> center_y >> radius;
+				//auto circle = sf::CircleShape(radius);
+				//circle.setPosition(center_x - radius, center_y - radius);
 				//auto circlePtr = std::make_unique<sf::CircleShape>(circle);
-				IShapeDecorator* f = new CCircleDecorator(circle);
-				array.push_back(f);
 				//array.emplace_back(std::make_unique<CCircleDecorator>(move(circlePtr)));
-				//array.emplace_back(std::make_unique<CCircleDecorator>(center_x, center_y, radius));
+				////array.emplace_back(std::make_unique<CCircleDecorator>(center_x, center_y, radius));
 			}
 		}
 		inpFile.close();
@@ -188,7 +185,7 @@ public:
 		fileOut.close();
 	}
 
-	void DrawFigures(std::vector<IShapeDecorator*>& arrayFigures)
+	void DrawFigures(std::vector<std::unique_ptr<IShapeDecorator>>& arrayFigures)
 	{
 		const int WINDOW_WIDTH = 800;
 		const int WINDOW_HEIGHT = 800;
@@ -346,7 +343,7 @@ public:
 				menu.ClickButtons(keyPos, drag);
 				//for (int i = 0; i < buttonsUndo.size(); i++)
 				//{
-			    	buttonUndo->ButtonClick(keyPos);
+					buttonUndo->ButtonClick(keyPos);
 				//}
 				taker.Backup();
 				isTool = false;
@@ -407,12 +404,12 @@ public:
 				if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
 				{
 					sort(vectorIndex.begin(), vectorIndex.end());
-					std::vector<IShapeDecorator*> newArr;
-					CShapeComposite* newShape = new CShapeComposite;
+					std::vector<std::unique_ptr<IShapeDecorator>> newArr;
+					auto newShape = std::make_unique<CShapeComposite>();
 					bool found = false;
 					for (int i = 0; i < vectorIndex.size(); i++)
 					{
-						newShape->Add(arrayFigures[vectorIndex[i]]);
+						newShape->Add(move(arrayFigures[vectorIndex[i]]));
 					}
 					for (int i = 0; i < arrayFigures.size(); i++)
 					{
@@ -425,14 +422,13 @@ public:
 							}
 						}
 						if (!found)
-							newArr.push_back(arrayFigures[i]);
+							newArr.emplace_back(move(arrayFigures[i]));
 						else
 							found = false;
 					}
-					newArr.push_back(newShape);
-					//newArr.push_back(std::make_unique<CShapeComposite>());
-					//newArr[newArr.size() - 1] = newShape;
-					arrayFigures = newArr;
+					newArr.emplace_back(std::make_unique<CShapeComposite>());
+					newArr[newArr.size() - 1] = move(newShape);
+					arrayFigures = move(newArr);
 					vectorIndex.clear();
 					vectorIndex.push_back(arrayFigures.size() - 1);
 					//index = arrayFigures.size() - 1;
@@ -441,7 +437,7 @@ public:
 			}
 			if (isNotGroup)
 			{
-				std::vector<IShapeDecorator*> newArr;
+				std::vector<std::unique_ptr<IShapeDecorator>> newArr;
 				//newArr = arrayFigures[index]->Ungroup();
 				int ind = vectorIndex[0];
 				vectorIndex.clear();
@@ -460,11 +456,11 @@ public:
 						//break;
 					}
 					if (!found)
-						newArr.push_back(arrayFigures[i]);
+						newArr.emplace_back(move(arrayFigures[i]));
 					else
 						found = false;
 				}
-				arrayFigures = newArr;
+				arrayFigures = move(newArr);
 				//isSelect = true;
 				isFrame = true;
 				isNotGroup = false;
@@ -492,7 +488,7 @@ public:
 
 		WriteFigureInfoInOutoutFile(outFName, arrayOfFigures);
 
-		DrawFigures(arrayOfFigures);
+		//DrawFigures(arrayOfFigures);
 	}
 private:
 	CHandler() {} //закрытый конструктор

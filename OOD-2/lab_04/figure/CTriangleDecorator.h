@@ -1,13 +1,13 @@
 #pragma once
 #include "IShapeDecorator.h"
 
-const std::string TRIAN_NAME = "RECTANGLE";
+const std::string TRIAN_NAME = "TRIANGLE";
 
 class CTriangleDecorator : public IShapeDecorator
 {
 public:
-	CTriangleDecorator(std::unique_ptr<sf::ConvexShape> trian)
-		: m_triangle(move(trian))
+	CTriangleDecorator(sf::ConvexShape* trian)
+		: m_triangle(trian)
 	{
 	}
 	double GetArea() const override;
@@ -24,7 +24,7 @@ public:
 	sf::FloatRect GetGlobalBounds() const override;
 	void DrawFrame(sf::RenderWindow& window) const override;
 	bool isGroup() const override;
-	std::vector<std::unique_ptr<IShapeDecorator>> Ungroup() override;
+	std::vector<IShapeDecorator*> Ungroup() override;
 
 	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
@@ -49,11 +49,26 @@ public:
 		}
 	}
 
-	const std::unique_ptr<sf::ConvexShape>& GetConcreteFigure() const
+	sf::ConvexShape* GetConcreteFigure() const
 	{
 		return m_triangle;
 	}
 
+	IShapeDecorator* Clone() override
+	{
+		sf::ConvexShape* trian = new sf::ConvexShape;
+		trian->setPointCount(m_triangle->getPointCount());
+		trian->setPoint(0, m_triangle->getPoint(0));
+		trian->setPoint(1, m_triangle->getPoint(1));
+		trian->setPoint(2, m_triangle->getPoint(2));
+		trian->setFillColor(m_triangle->getFillColor());
+		trian->setOutlineColor(m_triangle->getOutlineColor());
+		trian->setOutlineThickness(m_triangle->getOutlineThickness());
+		trian->setPosition(m_triangle->getPosition());
+		IShapeDecorator* f = new CTriangleDecorator(trian);
+		return f;
+	}
+
 private:
-	std::unique_ptr<sf::ConvexShape> m_triangle;
+	sf::ConvexShape* m_triangle;
 };

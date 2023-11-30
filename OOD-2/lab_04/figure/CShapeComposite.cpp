@@ -184,14 +184,14 @@ bool CShapeComposite::isGroup() const
 	return true;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CShapeComposite::Ungroup()
+std::vector<IShapeDecorator*> CShapeComposite::Ungroup()
 {
-	return move(m_shapes);
+	return m_shapes;
 }
 
-void CShapeComposite::Add(std::unique_ptr<IShapeDecorator> shape)
+void CShapeComposite::Add(IShapeDecorator* shape)
 {
-	m_shapes.push_back(move(shape));
+	m_shapes.push_back(shape);
 }
 
 //void CShapeComposite::SetFillColour(sf::Color colour)

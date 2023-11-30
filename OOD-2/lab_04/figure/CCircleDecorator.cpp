@@ -75,10 +75,10 @@ bool CCircleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CCircleDecorator::Ungroup()
+std::vector<IShapeDecorator*> CCircleDecorator::Ungroup()
 {
-	std::vector<std::unique_ptr<IShapeDecorator>> n;
-	return move(n);
+	std::vector<IShapeDecorator*> n;
+	return n;
 }
 
 //void CCircleDecorator::SetFillColour(sf::Color colour)

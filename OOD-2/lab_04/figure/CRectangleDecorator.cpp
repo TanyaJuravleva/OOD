@@ -77,10 +77,10 @@ bool CRectangleDecorator::isGroup() const
 	return false;
 }
 
-std::vector<std::unique_ptr<IShapeDecorator>> CRectangleDecorator::Ungroup()
+std::vector<IShapeDecorator*> CRectangleDecorator::Ungroup()
 {
-	std::vector<std::unique_ptr<IShapeDecorator>> n;
-	return move(n);
+	std::vector<IShapeDecorator*> n;
+	return n;
 }
 
 //void CRectangleDecorator::SetFillColour(sf::Color colour)
