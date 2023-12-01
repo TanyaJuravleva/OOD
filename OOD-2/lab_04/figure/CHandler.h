@@ -203,9 +203,9 @@ public:
 		sf::RectangleShape rec;
 
 		CToolbar menu(arrayFigures, vectorIndex);
-		Caretaker taker(menu);
-		auto buttonUndo = std::make_unique<CToolButtonUndo>("undo.jpg", 0, 100, taker, menu);
-		taker.Backup();
+		//Caretaker taker(&menu);
+		auto buttonUndo = std::make_unique<CToolButtonUndo>("undo.jpg", 0, 100, menu);
+		int ter = 0;
 		while (window.isOpen())
 		{
 			sf::Event event;
@@ -237,7 +237,8 @@ public:
 						{
 							if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
 							{
-								//index = i;
+								if (drag)
+									menu.Backup();
 								vectorIndex.clear();
 								vectorIndex.push_back(i);
 								isDraged = true;
@@ -272,7 +273,6 @@ public:
 						if (isDraged)
 						{
 							isDraged = false;
-							taker.Backup();
 							continue;
 						}
 						if ((isClick) && (!isDraged))
@@ -285,23 +285,11 @@ public:
 							{
 								vectorIndex.clear();
 							}
-							//if (buttonUndo->isClick(keyPos))
-							//{
-							//	vectorIndex.clear();
-							//}
-							//if (!isNotGroup)
-							//vectorIndex.clear();
 						}
 						if (select)
 						{
 							isSelect = true;
 							select = false;
-						}
-						else
-						{
-							//newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
-							//if (!isNotGroup)
-							//vectorIndex.clear();
 						}
 					}
 				}
@@ -316,22 +304,8 @@ public:
 				//Разгруппировка фигур
 				if ((sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::U)))
 				{
-					//for (int i = 0; i < arrayFigures.size(); i++)
-					//{
-					//	if (arrayFigures[i]->GetGlobalBounds().contains(pos.x, pos.y))
-					//	{
-					//		//index = i;
-					//		vectorIndex.clear();
-					//		vectorIndex.push_back(i);
-					//	}
-					//}
 					if (((arrayFigures[vectorIndex[0]])->isGroup()) && (vectorIndex.size() == 1))
 					{
-						//newPos.x = 0; newPos.y = 0; oldPos.x = 0; oldPos.y = 0;
-						//oldPos.x = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().x;
-						//oldPos.y = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().y;
-						//newPos.x = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().x + arrayFigures[vectorIndex[0]]->GetGlobalBounds().getSize().x;
-						//newPos.y = arrayFigures[vectorIndex[0]]->GetGlobalBounds().getPosition().y + arrayFigures[vectorIndex[0]]->GetGlobalBounds().getSize().y;
 						isGroup = false;
 						isSelect = false;
 						isFrame = false;
@@ -342,28 +316,15 @@ public:
 			}
 			if (isTool)
 			{
-				//menu.SetNewIndexes(vectorIndex);
 				menu.ClickButtons(keyPos, drag);
-				//for (int i = 0; i < buttonsUndo.size(); i++)
-				//{
-			    	buttonUndo->ButtonClick(keyPos);
-				//}
-				taker.Backup();
+			    buttonUndo->ButtonClick(keyPos);
 				isTool = false;
 				isFrame = true;
 			}
 			if ((isDraged) && (drag))
 			{
-				//sf::Vector2i posd;
-				//posd.x = pos.x - dx; posd.y = pos.y - dy;
 				sf::Vector2f posk = window.mapPixelToCoords(pixelPos);
-				//menu.SetNewIndexes(vectorIndex);
 				menu.DragAnDrop(posk.x - dx, posk.y - dy);
-				//isDraged = false;
-				//for (int i = 0; i < vectorIndex.size(); i++)
-				//{
-				//	arrayFigures[vectorIndex[i]]->SetPosition(pos.x - dx, pos.y - dy);
-				//}
 			}
 			if (isSelect)
 			{
@@ -376,14 +337,11 @@ public:
 					{
 						if (arrayFigures[i]->GetGlobalBounds().intersects(rec.getGlobalBounds()))
 						{
-							//arrayFigures[i]->DrawFrame(window);
 							vectorIndex.push_back(i);
 						}
 					}
-					//ind = vectorIndex;
 					isFrame = true;
 					isSelect = false;
-					//menu.SetNewIndexes(ind);
 				}
 				else
 				{
@@ -393,18 +351,20 @@ public:
 						if (arrayFigures[i]->GetGlobalBounds().contains(newPos.x, newPos.y))
 						{
 							vectorIndex.push_back(i);
-							//arrayFigures[i]->DrawFrame(window);
 							break;
 						}
 					}
 					isFrame = true;
 					isSelect = false;
 				}
-				//window.draw(rec);
+				menu.Backup();
 			}
 			if (isGroup)
 			{
-				if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
+				//menu.Backup();
+				//ter++;
+				menu.GroupFigures();
+				/*if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
 				{
 					sort(vectorIndex.begin(), vectorIndex.end());
 					std::vector<IShapeDecorator*> newArr;
@@ -430,19 +390,16 @@ public:
 							found = false;
 					}
 					newArr.push_back(newShape);
-					//newArr.push_back(std::make_unique<CShapeComposite>());
-					//newArr[newArr.size() - 1] = newShape;
 					arrayFigures = newArr;
 					vectorIndex.clear();
 					vectorIndex.push_back(arrayFigures.size() - 1);
-					//index = arrayFigures.size() - 1;
-				}
+				}*/
 				isGroup = false;
 			}
 			if (isNotGroup)
 			{
-				std::vector<IShapeDecorator*> newArr;
-				//newArr = arrayFigures[index]->Ungroup();
+				menu.UngroupFigures();
+				/*std::vector<IShapeDecorator*> newArr;
 				int ind = vectorIndex[0];
 				vectorIndex.clear();
 				newArr = arrayFigures[ind]->Ungroup();
@@ -454,10 +411,8 @@ public:
 				for (int i = 0; i < arrayFigures.size(); i++)
 				{
 					if (i == ind)
-						//if (i == index)
 					{
 						found = true;
-						//break;
 					}
 					if (!found)
 						newArr.push_back(arrayFigures[i]);
@@ -465,24 +420,24 @@ public:
 						found = false;
 				}
 				arrayFigures = newArr;
-				//isSelect = true;
+				isFrame = true;
+				isNotGroup = false;*/
 				isFrame = true;
 				isNotGroup = false;
 			}
 			if (isFrame)
 			{
-				//arrayFigures[index]->DrawFrame(window);
-				//std::vector<int> t{index};
 				for (int i = 0; i < vectorIndex.size(); i++)
 				{
 					arrayFigures[vectorIndex[i]]->DrawFrame(window);
 				}
-				//std::vector<int> t{ vectorIndex };
-				//ind = vectorIndex;
-				//menu.SetNewIndexes(ind);
 			}
 			window.display();
 		}
+		std::ofstream out("out.txt");
+		out << menu.mementos.size();
+		//out << ter;
+		out.close();
 	}
 
 	void StartWorkWithFigures(char* inpFName, char* outFName)

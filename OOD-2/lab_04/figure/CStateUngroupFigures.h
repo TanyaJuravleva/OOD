@@ -2,7 +2,7 @@
 //#include "IStateShapes.h"
 //#include "IToolbar.h"
 //#include "IShapeDecorator.h"
-//#include "CCommandFillColor.h"
+#include "CCommandFillColor.h"
 #include "CComandOutlineColor.h"
 #include "CCommandThickness.h"
 #include "CCommandAddFigure.h"
@@ -10,10 +10,10 @@
 #include "CCommandGroupFigures.h"
 #include "CCommandUngoupFigures.h"
 
-class CStateAddFigure : public IStateShapes
+class CStateUngroupFigures : public IStateShapes
 {
 public:
-	CStateAddFigure(IToolbar& bar)
+	CStateUngroupFigures(IToolbar& bar)
 		: m_bar(bar)
 	{
 		for (int i = 0; i < m_bar.GetShapes().size(); i++)
@@ -58,7 +58,7 @@ public:
 		CCommandUngoupFigures(m_bar).Execute();
 		m_bar.SetStateUngroupFigures();
 	}
-	
+
 private:
 	IToolbar& m_bar;
 };

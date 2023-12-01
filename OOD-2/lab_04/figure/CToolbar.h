@@ -13,6 +13,8 @@
 #include "CToolButtonAddFigure.h"
 #include "CToolButtonOutlineColor.h"
 #include "CToolButtonUndo.h"
+#include "CStateGroupFigures.h"
+#include "CStateUngroupFigures.h"
 
 class CToolbar : public IToolbar
 {
@@ -20,6 +22,7 @@ public:
 	IStateShapes* m_state;
 	std::vector<IShapeDecorator*>& m_shapes;
 	std::vector<int>& m_indexes;
+	std::vector<IMementoState*> mementos;
 	CToolbar(std::vector<IShapeDecorator*>& shapes, std::vector<int>& indexes)
 	: m_shapes(shapes)
 	, m_indexes(indexes)
@@ -86,6 +89,14 @@ public:
 	//	m_state.reset(new CStateDragAndDrop(*this));
 		m_state = new CStateDragAndDrop(*this);
 	}
+	void SetStateGroupFigures() override
+	{
+		m_state = new CStateGroupFigures(*this);
+	}
+	void SetStateUngroupFigures() override
+	{
+		m_state = new CStateUngroupFigures(*this);
+	}
 
 	std::vector<int> GetIndexes() override
 	{
@@ -126,12 +137,6 @@ public:
 			return true;
 		}
 		bool t = false;
-		//for (int i = 0; i < buttonsUndo.size(); i++)
-		//{
-		//	t = buttonsUndo[i]->isClick(pos);
-		//	if (t)
-		//		break;
-		//}
 		for (int i = 0; i < buttonsDD.size(); i++)
 		{
 			t = buttonsDD[i]->isClick(pos);
@@ -175,10 +180,6 @@ public:
 			{
 				buttonsF[i]->ButtonClick(pos);
 			}
-			//for (int i = 0; i < buttonsUndo.size(); i++)
-			//{
-			//	buttonsUndo[i]->ButtonClick(pos);
-			//}
 		}
 	}
 	void DragAnDrop(int x, int y)
@@ -205,65 +206,49 @@ public:
 	{
 		m_indexes = newInd;
 	}
-	//void Backup() override
-	//{
-	//	auto m = this->CreateMemento();
- //       this->mementos.push_back(&m);
- //   }
- //   void Undo() override 
-	//{
-	//	if (!mementos.size()) {
-	//		return;
-	//	}
-	//	std::ofstream out("out.txt");
-	//	out << "n: " << mementos.size();
-	//	CMementoState* memento = mementos.back();
-	//	mementos.pop_back();
-	//	memento->GetState()->ChangeFillColor(sf::Color::Blue);
-	//	out << " k: " << mementos.size() << " g ";
-	//	out.close();
- //       //try {
- //       // this->SetMemento(*memento);
- //       //}
- //       //catch (...) {
- //       //    this->Undo();
- //       //}
- //   }
-	void SetMemento(CMementoState memento) override
+	IMementoState* Save() override
 	{
-		//try
-		//{
-			//auto a = memento.GetState();
-			//auto k = a->GetIndexes();
-	//	}
-		//catch (...)
-		//{
+		return new CMementoState(this->m_state);
+	}
+	void Restore(IMementoState* memento) override
+	{
+		this->m_state = memento->GetState();
+		m_shapes.clear();
+		for (int i = 0; i < memento->GetState()->m_shapes.size(); i++)
+		{
+			IShapeDecorator* m = memento->GetState()->m_shapes[i]->Clone();
+			m_shapes.push_back(m);
+		}
+		m_indexes = memento->GetState()->m_indexes;
+	}
+	void Backup() override
+	{
+		this->mementos.push_back(this->Save());
+	}
+	void Undo() override
+	{
+		if (this->mementos.size() == 0) {
+			mementos.clear();
+			return;
+		}
+		IMementoState* memento = this->mementos.back();
+		this->mementos.pop_back();
+		try {
+			this->Restore(memento);
+		}
+		catch (...) {
+			this->Undo();
+		}
+	}
+	void GroupFigures() override
+	{
+		m_state->GroupFigures();
+	}
+	void UngroupFigures() override
+	{
+		m_state->UngroupFigures();
+	}
 
-		//}
-		//auto a = memento.GetState()->GetIndexes();
-		//std::ofstream out("out.txt");
-		//out << a[0];
-		//out.close();
-		m_shapes = memento.GetState()->GetShapes();
-		m_indexes = memento.GetState()->GetIndexes();
-		//try {
-			//auto m = memento.GetState().get();
-		//}
-		//catch(...)
-		//{
-		//	AddFigure(m_shapes, "circle");
-		//}
-		//m->AddFigure(m_shapes, "circle");
-		//m_state.reset();
-		//m_state.reset(memento.GetState().get());
-	    //m_state = move(memento.GetState());
-		//m_shapes = memento.GetState()->
-	}
-	CMementoState* CreateMemento() override
-	{
-		CMementoState* m = new CMementoState(m_state);
-		return m;
-	}
 private:
 	std::vector<std::unique_ptr<IToolButton>> buttonsDD;
 	std::vector<std::unique_ptr<IToolButton>> buttonsF;

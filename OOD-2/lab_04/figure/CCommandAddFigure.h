@@ -46,7 +46,7 @@ public:
 			trian->setPoint(1, sf::Vector2f(100, 50));
 			trian->setPoint(2, sf::Vector2f(0, 50));
 			IShapeDecorator* f = new CTriangleDecorator(trian);
-			//m_shapes.push_back(f);
+			m_shapes.push_back(f);
 			//auto trianPtr = std::make_unique<sf::ConvexShape>(trian);
 			//m_shapes.emplace_back(std::make_unique <CTriangleDecorator>(move(trianPtr)));
 		}

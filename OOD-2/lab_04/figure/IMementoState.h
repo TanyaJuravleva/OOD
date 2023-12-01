@@ -1,7 +1,8 @@
-//#pragma once
-//
-//class IMementoState
-//{
-//public:
-//	virtual void Restore() = 0;
-//};
+#pragma once
+
+class IMementoState
+{
+public:
+	virtual ~IMementoState() {}
+	virtual IStateShapes* GetState() = 0;
+};

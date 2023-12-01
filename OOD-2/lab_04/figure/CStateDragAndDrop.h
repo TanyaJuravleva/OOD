@@ -7,6 +7,7 @@
 #include "CCommandThickness.h"
 #include "CCommandAddFigure.h"
 #include "CCommandNewPosition.h"
+#include "CCommandUngoupFigures.h"
 
 class CStateDragAndDrop : public IStateShapes
 {
@@ -46,18 +47,17 @@ public:
 		CCommandNewPosition(m_bar, x, y).Execute();
 		m_bar.SetStateDragAndDrop();
 	}
-
-	std::vector<IShapeDecorator*> GetShapes() override
+	void GroupFigures() override
 	{
-		return m_shapes;
+		CCommandGroupFigures(m_bar).Execute();
+		m_bar.SetStateGroupFigures();
 	}
-	std::vector<int> GetIndexes() override
+	void UngroupFigures() override
 	{
-		return m_indexes;
+		CCommandUngoupFigures(m_bar).Execute();
+		m_bar.SetStateUngroupFigures();
 	}
 
 private:
 	IToolbar& m_bar;
-	std::vector<IShapeDecorator*> m_shapes;
-	std::vector<int> m_indexes;
 };

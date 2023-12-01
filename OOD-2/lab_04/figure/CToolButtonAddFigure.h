@@ -30,6 +30,7 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
+			m_bar.Backup();
 			m_bar.AddFigure(m_shapes, m_name);
 		}
 	}

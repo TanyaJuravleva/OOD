@@ -1,5 +1,5 @@
 //#pragma once
-//#include "IMementoState.h"
+#include "IMementoState.h"
 //#include "IStateShapes.h"
 //#include "CToolbar.h"
 //#include "IToolbar.h"
@@ -27,22 +27,17 @@
 
 #endif
 
-class CMementoState
+class CMementoState : public IMementoState
 {
 public:
 	CMementoState(IStateShapes* state)
 		:m_state(state)
 	{
 	}
-	IStateShapes* GetState()
+	IStateShapes* GetState() override
 	{
-		return m_state;
+		return this->m_state;
 	}
-	
-	//void SetState()
-	//{
-	//	return move(m_state);
-	//}
 private:
 	IStateShapes* m_state;
 };

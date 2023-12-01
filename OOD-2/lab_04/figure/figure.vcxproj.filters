@@ -164,5 +164,17 @@
     <ClInclude Include="IMementoState.h">
       <Filter>Файлы заголовков\Memento</Filter>
     </ClInclude>
+    <ClInclude Include="CCommandGroupFigures.h">
+      <Filter>Файлы заголовков\CommandClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateGroupFigures.h">
+      <Filter>Файлы заголовков\StateShapesClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CStateUngroupFigures.h">
+      <Filter>Файлы заголовков\StateShapesClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommandUngoupFigures.h">
+      <Filter>Файлы заголовков\CommandClass</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

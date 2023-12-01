@@ -7,12 +7,12 @@
 class CToolButtonUndo : public IToolButton
 {
 public:
-	CToolButtonUndo(std::string namePicture, int x, int y, Caretaker& taker, IToolbar& bar)
+	CToolButtonUndo(std::string namePicture, int x, int y/*, Caretaker& taker*/, IToolbar& bar)
 		: m_namePicture(namePicture)
 		, m_x(x)
 		, m_y(y)
 		, m_bar(bar)
-		, m_taker(taker)
+		//, m_taker(taker)
 	{
 	}
 	void Draw(sf::RenderWindow& window) override
@@ -28,8 +28,7 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
-			m_taker.Undo();
-			m_taker.Backup();
+			m_bar.Undo();
 		}
 	}
 	bool isClick(sf::Vector2i pos)
@@ -45,6 +44,6 @@ private:
 	int m_x;
 	int m_y;
 	IToolbar& m_bar;
-	Caretaker& m_taker;
+	//Caretaker& m_taker;
 	sf::Sprite button;
 };

@@ -27,6 +27,7 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
+			m_bar.Backup();
 			m_bar.ChangeThickness(m_thick);
 		}
 	}
