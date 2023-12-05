@@ -67,6 +67,9 @@
 #include "CTriangleDecorator.h"
 #include "CShapeComposite.h"
 #include "CToolbar.h"
+#include "CButtonSaveInBinaryFile.h"
+#include "CButtonRecoverTXT.h"
+#include "CButtonRecoverBIN.h"
 //#include "CMementoState.h"
 //#include "IMementoState.h"
 
@@ -205,6 +208,9 @@ public:
 		CToolbar menu(arrayFigures, vectorIndex);
 		auto buttonUndo = std::make_unique<CToolButtonUndo>("undo.jpg", 0, 100, menu);
 		auto buttonSaveTxt = std::make_unique<CButtonSaveTxt>("saveTXT.jpg", 50, 100, arrayFigures, menu);
+		auto buttonSaveBin = std::make_unique<CButtonSaveInBinaryFile>("saveBIN.jpg", 250, 90, arrayFigures, menu);
+		auto buttonRecoverTxt = std::make_unique<CButtonRecoverTXT>("recoverTXT.jpg", 50, 120, arrayFigures, menu);
+		auto buttonRecoverBin = std::make_unique<CButtonRecoverBIN>("recoverBIN.jpg", 250, 120, arrayFigures, menu);
 		int ter = 0;
 		while (window.isOpen())
 		{
@@ -218,6 +224,9 @@ public:
 			}
 			buttonUndo->Draw(window);
 			buttonSaveTxt->Draw(window);
+			buttonSaveBin->Draw(window);
+			buttonRecoverTxt->Draw(window);
+			buttonRecoverBin->Draw(window);
 			sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 			sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
 			while (window.pollEvent(event))
@@ -320,6 +329,9 @@ public:
 				menu.ClickButtons(keyPos, drag);
 			    buttonUndo->ButtonClick(keyPos);
 				buttonSaveTxt->ButtonClick(keyPos);
+				buttonSaveBin->ButtonClick(keyPos);
+				buttonRecoverTxt->ButtonClick(keyPos);
+				buttonRecoverBin->ButtonClick(keyPos);
 				isTool = false;
 				isFrame = true;
 			}

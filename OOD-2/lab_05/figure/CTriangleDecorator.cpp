@@ -1,4 +1,30 @@
 #include "CTriangleDecorator.h"
+std::string GetColorName2(sf::Color color)
+{
+	if (color == sf::Color::Blue)
+		return "blue";
+	if (color == sf::Color::Red)
+		return "red";
+	if (color == sf::Color::Yellow)
+		return "yellow";
+	if (color == sf::Color::Green)
+		return "green";
+	if (color == sf::Color::White)
+		return "white";
+}
+sf::Color GetColorByName2(std::string color)
+{
+	if (color == "blue")
+		return sf::Color::Blue;
+	if (color == "red")
+		return sf::Color::Red;
+	if (color == "red")
+		return sf::Color::Yellow;
+	if (color == "green")
+		return sf::Color::Green;
+	if (color == "white")
+		return sf::Color::White;
+}
 
 double CTriangleDecorator::GetArea() const
 {
@@ -23,14 +49,25 @@ void CTriangleDecorator::Draw(sf::RenderWindow& window) const
 
 std::string CTriangleDecorator::ToString() const
 {
-	const std::string TRIANGLE_AREA = "S=";
-	const std::string TRIANGLE_PERIMETER = "P=";
+	//const std::string TRIANGLE_AREA = "S=";
+	//const std::string TRIANGLE_PERIMETER = "P=";
 	const std::string WHITESPACE = " ";
-	const std::string COMMA = ", ";
-	const std::string TWO_DOTS = ": ";
-	return GetName() + TWO_DOTS +
-		TRIANGLE_AREA + std::to_string(GetArea()) + COMMA +
-		TRIANGLE_PERIMETER + std::to_string(GetPerimeter());
+	//const std::string COMMA = ", ";
+	//const std::string TWO_DOTS = ": ";
+	//return GetName() + TWO_DOTS +
+	//	TRIANGLE_AREA + std::to_string(GetArea()) + COMMA +
+	//	TRIANGLE_PERIMETER + std::to_string(GetPerimeter());
+	return GetName() + std::to_string(m_triangle->getPoint(0).x)
+		+ WHITESPACE + std::to_string(m_triangle->getPoint(0).y)
+		+ WHITESPACE + std::to_string(m_triangle->getPoint(1).x)
+		+ WHITESPACE + std::to_string(m_triangle->getPoint(1).y)
+		+ WHITESPACE + std::to_string(m_triangle->getPoint(2).x)
+		+ WHITESPACE + std::to_string(m_triangle->getPoint(2).y)
+		+ WHITESPACE + std::to_string(m_triangle->getPosition().x)
+		+ WHITESPACE + std::to_string(m_triangle->getPosition().y)
+		+ WHITESPACE + GetColorName2(m_triangle->getFillColor())
+		+ WHITESPACE + GetColorName2(m_triangle->getOutlineColor())
+		+ WHITESPACE + std::to_string(m_triangle->getOutlineThickness());
 
 }
 

@@ -43,6 +43,12 @@
     <Filter Include="Файлы заголовков\SaveStrategyClass">
       <UniqueIdentifier>{0fb6a1dc-2bfb-4b4c-8547-6c739421d2ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\RecoverTemplateClass">
+      <UniqueIdentifier>{a1da818a-be78-4ff7-ad76-f0c7a713db50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\BuilderShapeClass">
+      <UniqueIdentifier>{5c7222e2-ecee-49ff-8e84-dc2b8a2a1810}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -190,6 +196,36 @@
     </ClInclude>
     <ClInclude Include="Saver.h">
       <Filter>Файлы заголовков\SaveStrategyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ReverseColor.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CSaveInBinaryFile.h">
+      <Filter>Файлы заголовков\SaveStrategyClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonSaveInBinaryFile.h">
+      <Filter>Файлы заголовков\ButtonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonRecoverTXT.h">
+      <Filter>Файлы заголовков\ButtonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonRecoverBIN.h">
+      <Filter>Файлы заголовков\ButtonClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IRecoverTemplate.h">
+      <Filter>Файлы заголовков\RecoverTemplateClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IBuilderShape.h">
+      <Filter>Файлы заголовков\BuilderShapeClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuilderCirlce.h">
+      <Filter>Файлы заголовков\BuilderShapeClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CCreateFigureTemplate.h">
+      <Filter>Файлы заголовков\RecoverTemplateClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CRecoverFromBin.h">
+      <Filter>Файлы заголовков\RecoverTemplateClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

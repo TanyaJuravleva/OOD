@@ -1,6 +1,32 @@
 #define _USE_MATH_DEFINES
 
 #include "CRectangleDecorator.h"
+std::string GetColorName1(sf::Color color)
+{
+	if (color == sf::Color::Blue)
+		return "blue";
+	if (color == sf::Color::Red)
+		return "red";
+	if (color == sf::Color::Yellow)
+		return "yellow";
+	if (color == sf::Color::Green)
+		return "green";
+	if (color == sf::Color::White)
+		return "white";
+}
+sf::Color GetColorByName1(std::string color)
+{
+	if (color == "blue")
+		return sf::Color::Blue;
+	if (color == "red")
+		return sf::Color::Red;
+	if (color == "red")
+		return sf::Color::Yellow;
+	if (color == "green")
+		return sf::Color::Green;
+	if (color == "white")
+		return sf::Color::White;
+}
 
 double CRectangleDecorator::GetArea() const
 {
@@ -26,14 +52,21 @@ void CRectangleDecorator::Draw(sf::RenderWindow& window) const
 
 std::string CRectangleDecorator::ToString() const
 {
-	const std::string RECTANGLE_AREA = "S=";
-	const std::string RECTANGLE_PERIMETER = "P=";
+	//const std::string RECTANGLE_AREA = "S=";
+	//const std::string RECTANGLE_PERIMETER = "P=";
 	const std::string WHITESPACE = " ";
-	const std::string COMMA = ", ";
-	const std::string TWO_DOTS = ": ";
-	return GetName() + TWO_DOTS +
-		RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
-		RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
+	//const std::string COMMA = ", ";
+	//const std::string TWO_DOTS = ": ";
+	//return GetName() + TWO_DOTS +
+	//	RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
+	//	RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
+	return GetName() + std::to_string(m_rectangle->getSize().x)
+		+ WHITESPACE + std::to_string(m_rectangle->getSize().y)
+		+ WHITESPACE + std::to_string(m_rectangle->getPosition().x)
+		+ WHITESPACE + std::to_string(m_rectangle->getPosition().y)
+		+ WHITESPACE + GetColorName1(m_rectangle->getFillColor())
+		+ WHITESPACE + GetColorName1(m_rectangle->getOutlineColor())
+		+ WHITESPACE + std::to_string(m_rectangle->getOutlineThickness());
 }
 
 
