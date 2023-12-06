@@ -157,8 +157,12 @@
   <ItemGroup>
     <ClInclude Include="Caretaker.h" />
     <ClInclude Include="CBuilderCirlce.h" />
+    <ClInclude Include="CBuilderGroup.h" />
+    <ClInclude Include="CBuilderRectangle.h" />
+    <ClInclude Include="CBuilderTriangele.h" />
     <ClInclude Include="CCreateFigureTemplate.h" />
     <ClInclude Include="CRecoverFromBin.h" />
+    <ClInclude Include="CRecoverFromTxt.h" />
     <ClInclude Include="IBuilderShape.h" />
     <ClInclude Include="CButtonNoClick.h" />
     <ClInclude Include="CButtonRecoverBIN.h" />

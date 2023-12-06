@@ -227,5 +227,17 @@
     <ClInclude Include="CRecoverFromBin.h">
       <Filter>Файлы заголовков\RecoverTemplateClass</Filter>
     </ClInclude>
+    <ClInclude Include="CRecoverFromTxt.h">
+      <Filter>Файлы заголовков\RecoverTemplateClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuilderRectangle.h">
+      <Filter>Файлы заголовков\BuilderShapeClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuilderTriangele.h">
+      <Filter>Файлы заголовков\BuilderShapeClass</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuilderGroup.h">
+      <Filter>Файлы заголовков\BuilderShapeClass</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

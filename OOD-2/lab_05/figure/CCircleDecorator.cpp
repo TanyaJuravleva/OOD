@@ -40,7 +40,7 @@ std::string CCircleDecorator::ToString() const
 	const std::string WHITESPACE = " ";
 	//const std::string COMMA = ", ";
 	//const std::string TWO_DOTS = ": ";
-	return GetName() + std::to_string(m_circle->getRadius()) 
+	return GetName() + WHITESPACE + std::to_string(m_circle->getRadius())
 		+ WHITESPACE + std::to_string(m_circle->getPosition().x) 
 		+ WHITESPACE + std::to_string(m_circle->getPosition().y)
 		+ WHITESPACE + GetColorName(m_circle->getFillColor())

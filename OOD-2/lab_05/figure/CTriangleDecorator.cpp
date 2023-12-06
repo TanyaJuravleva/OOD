@@ -57,7 +57,7 @@ std::string CTriangleDecorator::ToString() const
 	//return GetName() + TWO_DOTS +
 	//	TRIANGLE_AREA + std::to_string(GetArea()) + COMMA +
 	//	TRIANGLE_PERIMETER + std::to_string(GetPerimeter());
-	return GetName() + std::to_string(m_triangle->getPoint(0).x)
+	return GetName() + WHITESPACE + std::to_string(m_triangle->getPoint(0).x)
 		+ WHITESPACE + std::to_string(m_triangle->getPoint(0).y)
 		+ WHITESPACE + std::to_string(m_triangle->getPoint(1).x)
 		+ WHITESPACE + std::to_string(m_triangle->getPoint(1).y)

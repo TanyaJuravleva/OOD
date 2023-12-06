@@ -1,29 +1,32 @@
 #pragma once
+#pragma once
 #include "IBuilderShape.h"
-#include "CCircleDecorator.h"
+#include "CTriangleDecorator.h"
 #include "CShapeFillColorVisitor.h"
 #include "CShapeOutlineColorVisitor.h"
 #include "CShapeOutlineThicknessVisitor.h"
 
-class CBuilderCirlce : public IBuilderShape 
+class CBuilderTriangele : public IBuilderShape
 {
 private:
     IShapeDecorator* product;
-    int m_r;
 public:
 
-    CBuilderCirlce(int r) 
-        :m_r(r)
+    CBuilderTriangele(int x1, int y1, int x2, int y2, int x3, int y3)
     {
-        this->Reset(r);
+        this->Reset(x1, y1, x2, y2, x3, y3);
     }
-    ~CBuilderCirlce() {
+    ~CBuilderTriangele() {
         delete product;
     }
 
-    void Reset(int r) {
-        sf::CircleShape* circle = new sf::CircleShape(r);
-        this->product = new CCircleDecorator(circle);
+    void Reset(int x1, int y1, int x2, int y2, int x3, int y3) {
+        sf::ConvexShape* trian = new sf::ConvexShape;
+        trian->setPointCount(3);
+        trian->setPoint(0, sf::Vector2f(x1, y1));
+        trian->setPoint(1, sf::Vector2f(x2, y2));
+        trian->setPoint(2, sf::Vector2f(x3, y3));
+        this->product = new CTriangleDecorator(trian);
     }
 
     void ProduceCommon() override
@@ -52,8 +55,6 @@ public:
 
     IShapeDecorator* GetProduct() override
     {
-        IShapeDecorator* result = this->product;
-        this->Reset(m_r);
-        return result;
+        return this->product;
     }
 };

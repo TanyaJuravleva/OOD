@@ -4,7 +4,7 @@
 #include "CCommandAddFigure.h"
 #include "IShapeDecorator.h"
 #include "Saver.h"
-#include "CSaveInBinaryFile.h"
+#include "CRecoverFromTxt.h"
 
 class CButtonRecoverTXT : public IToolButton
 {
@@ -31,6 +31,8 @@ public:
 	{
 		if (button.getGlobalBounds().contains(pos.x, pos.y))
 		{
+			CRecoverFromTxt p;
+			m_shapes = p.Execute();
 			//Saver* p = new Saver(new CSaveInBinaryFile);
 			//p->SaveInFile(m_shapes);
 		}

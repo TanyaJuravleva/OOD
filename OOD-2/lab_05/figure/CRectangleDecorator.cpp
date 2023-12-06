@@ -60,7 +60,7 @@ std::string CRectangleDecorator::ToString() const
 	//return GetName() + TWO_DOTS +
 	//	RECTANGLE_AREA + std::to_string(GetArea()) + COMMA +
 	//	RECTANGLE_PERIMETER + std::to_string(GetPerimeter());
-	return GetName() + std::to_string(m_rectangle->getSize().x)
+	return GetName() + WHITESPACE + std::to_string(m_rectangle->getSize().x)
 		+ WHITESPACE + std::to_string(m_rectangle->getSize().y)
 		+ WHITESPACE + std::to_string(m_rectangle->getPosition().x)
 		+ WHITESPACE + std::to_string(m_rectangle->getPosition().y)

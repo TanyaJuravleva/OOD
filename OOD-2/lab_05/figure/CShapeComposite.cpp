@@ -43,8 +43,9 @@ std::string CShapeComposite::ToString() const
 	std::string strShapes = "GROUP\n";
 	for (int i = 0; i < m_shapes.size(); i++)
 	{
-		strShapes += std::to_string(i) + " " + m_shapes[i]->ToString() + "\n";
+		strShapes += m_shapes[i]->ToString() + "\n";
 	}
+	strShapes += "ENDGROUP\n";
 	return strShapes;
 }
 

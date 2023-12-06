@@ -1,29 +1,29 @@
 #pragma once
+#pragma once
 #include "IBuilderShape.h"
-#include "CCircleDecorator.h"
+#include "CRectangleDecorator.h"
 #include "CShapeFillColorVisitor.h"
 #include "CShapeOutlineColorVisitor.h"
 #include "CShapeOutlineThicknessVisitor.h"
 
-class CBuilderCirlce : public IBuilderShape 
+class CBuilderRectangle : public IBuilderShape
 {
 private:
     IShapeDecorator* product;
-    int m_r;
 public:
 
-    CBuilderCirlce(int r) 
-        :m_r(r)
+    CBuilderRectangle(int width, int height)
     {
-        this->Reset(r);
+        this->Reset(width, height);
     }
-    ~CBuilderCirlce() {
+    ~CBuilderRectangle() {
         delete product;
     }
 
-    void Reset(int r) {
-        sf::CircleShape* circle = new sf::CircleShape(r);
-        this->product = new CCircleDecorator(circle);
+    void Reset(int width, int height) {
+        sf::RectangleShape* rec = new sf::RectangleShape;
+        rec->setSize(sf::Vector2f(width, height));
+        this->product = new CRectangleDecorator(rec);
     }
 
     void ProduceCommon() override
@@ -52,8 +52,6 @@ public:
 
     IShapeDecorator* GetProduct() override
     {
-        IShapeDecorator* result = this->product;
-        this->Reset(m_r);
-        return result;
+        return this->product;
     }
 };

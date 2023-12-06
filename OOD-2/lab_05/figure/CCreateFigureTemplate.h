@@ -13,4 +13,8 @@ public:
 		builder->ProduceOutlineThickness(thick);
 		return builder->GetProduct();
 	}
+	IShapeDecorator* CreateGroup(IBuilderShape* builder)
+	{
+		return builder->GetProduct();
+	}
 };
