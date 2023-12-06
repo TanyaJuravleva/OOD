@@ -33,36 +33,36 @@ public:
 	}
 	void Initialization() override
 	{
-		buttons.emplace_back(std::make_unique<CToolButtonMode>("ddO.jpg", 0, 0, *this));
-		buttons.emplace_back(std::make_unique<CToolButtonMode>("fill.jpg", 280, 0, *this));
+		buttons.emplace_back(std::make_unique<CToolButtonMode>(DD, 0, 0, *this));
+		buttons.emplace_back(std::make_unique<CToolButtonMode>(FILL, 280, 0, *this));
 		mode = "dd";
 
-		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>("addFigure.jpg", 0, 40, *this));
+		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>(ADD_FIGURE, 0, 40, *this));
 		//кнопки добавления фигуры
-		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>("cir.jpg", 0, 60, m_shapes, "circle", *this));
-		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>("rec.jpg", 40, 60, m_shapes, "rectangle", *this));
-		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>("trian.jpg", 80, 60, m_shapes, "triangle", *this));
+		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>(CIR, 0, 60, m_shapes, NAME_CIRCLE, *this));
+		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>(REC, 40, 60, m_shapes, NAME_RECTANGLE, *this));
+		buttonsDD.emplace_back(std::make_unique<CToolButtonAddFigure>(TRIAN, 80, 60, m_shapes, NAME_TRIANGLE, *this));
 		
 
-		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>("fillColor.jpg", 280, 40, *this));
+		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>(FILL_COLOR, 280, 40, *this));
 		//кнопки изменения цвета заливки
-		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>("blue.jpg", 280, 60, sf::Color::Blue, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>("red.jpg", 300, 60, sf::Color::Red, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>("green.jpg", 320, 60, sf::Color::Green, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>("yellow.jpg", 340, 60, sf::Color::Yellow, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>(BUTTON_BLUE, 280, 60, sf::Color::Blue, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>(BUTTON_RED, 300, 60, sf::Color::Red, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>(BUTTON_GREEN, 320, 60, sf::Color::Green, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonFillColor>(BUTTON_YELLOW, 340, 60, sf::Color::Yellow, *this));
 
-		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>("fillOutline.jpg", 380, 40, *this));
+		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>(FILL_OUTLINE, 380, 40, *this));
 		//кнопки изменения цвета линии
-		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>("blue.jpg", 380, 60, sf::Color::Blue, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>("red.jpg", 400, 60, sf::Color::Red, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>("green.jpg", 420, 60, sf::Color::Green, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>("yellow.jpg", 440, 60, sf::Color::Yellow, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>(BUTTON_BLUE, 380, 60, sf::Color::Blue, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>(BUTTON_RED, 400, 60, sf::Color::Red, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>(BUTTON_GREEN, 420, 60, sf::Color::Green, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonOutlineColor>(BUTTON_YELLOW, 440, 60, sf::Color::Yellow, *this));
 
 
-		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>("changeOutline.jpg", 470, 40, *this));
+		buttonsNoClick.emplace_back(std::make_unique<CButtonNoClick>(CHANGE_THICKNESS_OUTLINE, 470, 40, *this));
 		//кнопки изменения толщины
-		buttonsF.emplace_back(std::make_unique<CToolButtonThickness>("thick2.jpg", 470, 60, 2, *this));
-		buttonsF.emplace_back(std::make_unique<CToolButtonThickness>("thick4.jpg", 570, 60, 4, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonThickness>(THICKNESS_2, 470, 60, 2, *this));
+		buttonsF.emplace_back(std::make_unique<CToolButtonThickness>(THICKNESS_4, 570, 60, 4, *this));
 
 	}
 	void SetStateFillColor() override

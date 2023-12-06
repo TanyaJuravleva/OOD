@@ -161,6 +161,7 @@
     <ClInclude Include="CBuilderRectangle.h" />
     <ClInclude Include="CBuilderTriangele.h" />
     <ClInclude Include="CCreateFigureTemplate.h" />
+    <ClInclude Include="CONSTS.h" />
     <ClInclude Include="CRecoverFromBin.h" />
     <ClInclude Include="CRecoverFromTxt.h" />
     <ClInclude Include="IBuilderShape.h" />

@@ -4,12 +4,12 @@
 class Saver
 {
 public:
-    Saver(ISaveStrategy* comp) 
-        : p(comp) 
+    Saver(ISaveStrategy* strategy)
+        : m_strategy(strategy)
     {}
     void SaveInFile(std::vector<IShapeDecorator*>& arrayFigures) {
-        p->SaveInFile(arrayFigures);
+        m_strategy->SaveInFile(arrayFigures);
     }
 private:
-    ISaveStrategy* p;
+    ISaveStrategy* m_strategy;
 };

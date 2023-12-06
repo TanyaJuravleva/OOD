@@ -4,62 +4,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-//
-//#include <SFML/Window.hpp>
-//#include <SFML/Graphics.hpp>
-//#include <SFML/System.hpp>
-//
-////buttons
-//#include "IToolButton.h"
-//#include "CToolButtonUndo.h"
-//#include "CToolButtonThickness.h"
-//#include "CToolButtonOutlineColor.h"
-//#include "CToolButtonMode.h"
-//#include "CToolButtonFillColor.h"
-//#include "CToolButtonAddFigure.h"
-//#include "CButtonNoClick.h"
-//
-////commands
-//#include "CComandOutlineColor.h"
-//#include "CCommandAddFigure.h"
-//#include "CCommandFillColor.h"
-//#include "CCommandNewPosition.h"
-//#include "CCommandThickness.h"
-//#include "ICommand.h"
-//
-////decorator
-//#include "IShapeDecorator.h"
-//#include "CCircleDecorator.h"
-//#include "CRectangleDecorator.h"
-//#include "CTriangleDecorator.h"
-//#include "CShapeComposite.h"
-//
-////memento
-//#include "CMementoState.h"
-//#include "IMementoState.h"
-//
-////caretaker
-//#include "Caretaker.h"
-//
-////visitor
-//#include "CShapeFillColorVisitor.h"
-//#include "CShapeOutlineColorVisitor.h"
-//#include "CShapeOutlineThicknessVisitor.h"
-//#include "IShapeVisitor.h"
-//
-////state
-//#include "CStateAddFigure.h"
-//#include "CStateDragAndDrop.h"
-//#include "CStateFillColor.h"
-//#include "CStateOutlineColor.h"
-//#include "CStateThickness.h"
-//#include "IStateShapes.h"
-//
-////toolbar
-//#include "CToolbar.h"
-//#include "IToolbar.h"
-
-//#include "C"
 
 #include "IShapeDecorator.h"
 #include "CCircleDecorator.h"
@@ -70,8 +14,6 @@
 #include "CButtonSaveInBinaryFile.h"
 #include "CButtonRecoverTXT.h"
 #include "CButtonRecoverBIN.h"
-//#include "CMementoState.h"
-//#include "IMementoState.h"
 
 class CHandler
 {
@@ -122,9 +64,6 @@ public:
 
 	std::vector<IShapeDecorator*> GetArrayOfFiguresFromInpFile(char* inpFileName)
 	{
-		const std::string RECTANGLE = "RECTANGLE";
-		const std::string TRIANGLE = "TRIANGLE";
-		const std::string CIRCLE = "CIRCLE";
 		std::string figureName;
 		bool pr = true;
 		std::vector<IShapeDecorator*> array;
@@ -141,7 +80,7 @@ public:
 		while (inpFile >> figureName)
 		{
 			figureName.erase(std::prev(figureName.end()));
-			if (figureName == RECTANGLE)
+			if (figureName == NAME_RECTANGLE)
 			{
 				inpFile >> recTopPointX >> recTopPointY >> recBotPointX >> recBotPointY;
 				sf::RectangleShape* rec = new sf::RectangleShape;
@@ -151,7 +90,7 @@ public:
 				array.push_back(f);
 			}
 
-			if (figureName == TRIANGLE)
+			if (figureName == NAME_TRIANGLE)
 			{
 				inpFile >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y;
 				sf::ConvexShape* trian = new sf::ConvexShape;
@@ -165,7 +104,7 @@ public:
 				array.push_back(f);
 			}
 
-			if (figureName == CIRCLE)
+			if (figureName == NAME_CIRCLE)
 			{
 				inpFile >> center_x >> center_y >> radius;
 				sf::CircleShape* circle = new sf::CircleShape(radius);
@@ -206,12 +145,13 @@ public:
 		sf::RectangleShape rec;
 
 		CToolbar menu(arrayFigures, vectorIndex);
-		auto buttonUndo = std::make_unique<CToolButtonUndo>("undo.jpg", 0, 100, menu);
-		auto buttonSaveTxt = std::make_unique<CButtonSaveTxt>("saveTXT.jpg", 50, 100, arrayFigures, menu);
-		auto buttonSaveBin = std::make_unique<CButtonSaveInBinaryFile>("saveBIN.jpg", 250, 90, arrayFigures, menu);
-		auto buttonRecoverTxt = std::make_unique<CButtonRecoverTXT>("recoverTXT.jpg", 50, 120, arrayFigures, menu);
-		auto buttonRecoverBin = std::make_unique<CButtonRecoverBIN>("recoverBIN.jpg", 250, 120, arrayFigures, menu);
-		int ter = 0;
+		std::vector<std::unique_ptr<IToolButton>> buttons;
+		buttons.emplace_back(std::make_unique<CToolButtonUndo>(UNDO, 0, 100, menu));
+		buttons.emplace_back(std::make_unique<CButtonSaveTxt>(SAVE_TXT, 50, 100, arrayFigures, menu));
+		buttons.emplace_back(std::make_unique<CButtonSaveInBinaryFile>(SAVE_BIN, 250, 90, arrayFigures, menu));
+		buttons.emplace_back(std::make_unique<CButtonRecoverTXT>(RECOVER_TXT, 50, 120, arrayFigures, menu));
+		buttons.emplace_back(std::make_unique<CButtonRecoverBIN>(RECOVER_BIN, 250, 120, arrayFigures, menu));
+
 		while (window.isOpen())
 		{
 			sf::Event event;
@@ -222,11 +162,10 @@ public:
 			{
 				arrayFigures[i]->Draw(window);
 			}
-			buttonUndo->Draw(window);
-			buttonSaveTxt->Draw(window);
-			buttonSaveBin->Draw(window);
-			buttonRecoverTxt->Draw(window);
-			buttonRecoverBin->Draw(window);
+			for (int i = 0; i< buttons.size(); i++)
+			{
+				buttons[i]->Draw(window);
+			}
 			sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 			sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
 			while (window.pollEvent(event))
@@ -327,11 +266,10 @@ public:
 			if (isTool)
 			{
 				menu.ClickButtons(keyPos, drag);
-			    buttonUndo->ButtonClick(keyPos);
-				buttonSaveTxt->ButtonClick(keyPos);
-				buttonSaveBin->ButtonClick(keyPos);
-				buttonRecoverTxt->ButtonClick(keyPos);
-				buttonRecoverBin->ButtonClick(keyPos);
+				for (int i = 0; i < buttons.size(); i++)
+				{
+					buttons[i]->ButtonClick(keyPos);
+				}
 				isTool = false;
 				isFrame = true;
 			}
@@ -375,10 +313,68 @@ public:
 			}
 			if (isGroup)
 			{
-				//menu.Backup();
-				//ter++;
 				menu.GroupFigures();
-				/*if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
+				isGroup = false;
+			}
+			if (isNotGroup)
+			{
+				menu.UngroupFigures();
+				isFrame = true;
+				isNotGroup = false;
+			}
+			if (isFrame)
+			{
+				for (int i = 0; i < vectorIndex.size(); i++)
+				{
+					arrayFigures[vectorIndex[i]]->DrawFrame(window);
+				}
+			}
+			window.display();
+		}
+	}
+
+	void StartWorkWithFigures(char* inpFName, char* outFName)
+	{
+		std::vector<IShapeDecorator*> arrayOfFigures;
+		arrayOfFigures = GetArrayOfFiguresFromInpFile(inpFName);
+
+		WriteFigureInfoInOutoutFile(outFName, arrayOfFigures);
+
+		DrawFigures(arrayOfFigures);
+	}
+private:
+	CHandler() {} //закрытый конструктор
+};
+
+
+
+
+/*std::vector<IShapeDecorator*> newArr;
+int ind = vectorIndex[0];
+vectorIndex.clear();
+newArr = arrayFigures[ind]->Ungroup();
+for (int j = 0; j < newArr.size(); j++)
+{
+	vectorIndex.push_back(j);
+}
+bool found = false;
+for (int i = 0; i < arrayFigures.size(); i++)
+{
+	if (i == ind)
+	{
+		found = true;
+	}
+	if (!found)
+		newArr.push_back(arrayFigures[i]);
+	else
+		found = false;
+}
+arrayFigures = newArr;
+isFrame = true;
+isNotGroup = false;*/
+
+
+/*if ((!vectorIndex.empty()) && (vectorIndex.size() > 1))
 				{
 					sort(vectorIndex.begin(), vectorIndex.end());
 					std::vector<IShapeDecorator*> newArr;
@@ -408,61 +404,3 @@ public:
 					vectorIndex.clear();
 					vectorIndex.push_back(arrayFigures.size() - 1);
 				}*/
-				isGroup = false;
-			}
-			if (isNotGroup)
-			{
-				menu.UngroupFigures();
-				/*std::vector<IShapeDecorator*> newArr;
-				int ind = vectorIndex[0];
-				vectorIndex.clear();
-				newArr = arrayFigures[ind]->Ungroup();
-				for (int j = 0; j < newArr.size(); j++)
-				{
-					vectorIndex.push_back(j);
-				}
-				bool found = false;
-				for (int i = 0; i < arrayFigures.size(); i++)
-				{
-					if (i == ind)
-					{
-						found = true;
-					}
-					if (!found)
-						newArr.push_back(arrayFigures[i]);
-					else
-						found = false;
-				}
-				arrayFigures = newArr;
-				isFrame = true;
-				isNotGroup = false;*/
-				isFrame = true;
-				isNotGroup = false;
-			}
-			if (isFrame)
-			{
-				for (int i = 0; i < vectorIndex.size(); i++)
-				{
-					arrayFigures[vectorIndex[i]]->DrawFrame(window);
-				}
-			}
-			window.display();
-		}
-		std::ofstream out("out.txt");
-		out << menu.mementos.size();
-		//out << ter;
-		out.close();
-	}
-
-	void StartWorkWithFigures(char* inpFName, char* outFName)
-	{
-		std::vector<IShapeDecorator*> arrayOfFigures;
-		arrayOfFigures = GetArrayOfFiguresFromInpFile(inpFName);
-
-		WriteFigureInfoInOutoutFile(outFName, arrayOfFigures);
-
-		DrawFigures(arrayOfFigures);
-	}
-private:
-	CHandler() {} //закрытый конструктор
-};

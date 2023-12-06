@@ -9,23 +9,19 @@ class CBuilderCirlce : public IBuilderShape
 {
 private:
     IShapeDecorator* product;
-    int m_r;
 public:
 
     CBuilderCirlce(int r) 
-        :m_r(r)
     {
         this->Reset(r);
     }
     ~CBuilderCirlce() {
         delete product;
     }
-
     void Reset(int r) {
         sf::CircleShape* circle = new sf::CircleShape(r);
         this->product = new CCircleDecorator(circle);
     }
-
     void ProduceCommon() override
     {
         return;
@@ -49,11 +45,8 @@ public:
         CShapeOutlineThicknessVisitor visitor(thickness);
         this->product->SetOutlineThickness(visitor);
     }
-
     IShapeDecorator* GetProduct() override
     {
-        IShapeDecorator* result = this->product;
-        this->Reset(m_r);
-        return result;
+        return  this->product;
     }
 };

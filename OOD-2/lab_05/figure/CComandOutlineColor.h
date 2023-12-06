@@ -19,7 +19,6 @@ public:
 		{
 			CShapeOutlineColorVisitor visitor(m_color);
 			m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(visitor);
-			//m_bar.GetShapes()[arrInd[i]]->SetOutlineColor(m_color);
 		}
 	}
 private:

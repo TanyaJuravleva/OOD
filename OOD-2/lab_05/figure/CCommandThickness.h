@@ -20,7 +20,6 @@ public:
 		{
 			CShapeOutlineThicknessVisitor visitor(m_thick);
 			m_bar.GetShapes()[arrInd[i]]->SetFillColor(visitor);
-			//m_bar.GetShapes()[arrInd[i]]->SetOutlineThickness(m_thick);
 		}
 	}
 private:

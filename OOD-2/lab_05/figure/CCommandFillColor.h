@@ -21,7 +21,6 @@ public:
 		{
 			CShapeFillColorVisitor visitor(m_color);
 			m_bar.GetShapes()[arrInd[i]]->SetFillColor(visitor);
-			//m_bar.GetShapes()[arrInd[i]]->SetFillColour(m_color);
 		}
 	}
 private:

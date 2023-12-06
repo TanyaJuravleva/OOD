@@ -8,7 +8,7 @@
 class CBuilderGroup : public IBuilderShape
 {
 private:
-    IShapeDecorator* product;
+    CShapeComposite* product;
 public:
 
     CBuilderGroup()
@@ -47,5 +47,9 @@ public:
     IShapeDecorator* GetProduct() override
     {
         return this->product;
+    }
+    void Add(IShapeDecorator* shape)
+    {
+        this->product->Add(shape);
     }
 };

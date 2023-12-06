@@ -1,6 +1,4 @@
 #pragma once
-//#include "IShapeVisitor.h"
-//#include "CShapeComposite.h"
 
 class CShapeOutlineColorVisitor
     : public Visitor<const CRectangleDecorator>

@@ -1,7 +1,5 @@
 #define _USE_MATH_DEFINES
-
 #include "CCircleDecorator.h"
-#include "ReverseColor.h"
 
 double CCircleDecorator::GetArea() const
 {
@@ -26,20 +24,6 @@ void CCircleDecorator::Draw(sf::RenderWindow& window) const
 
 std::string CCircleDecorator::ToString() const
 {
-	//const std::string CIRCLE_AREA = "S=";
-	//const std::string CIRCLE_PERIMETER = "P=";
-	//const std::string WHITESPACE = " ";
-	//const std::string COMMA = ", ";
-	//const std::string TWO_DOTS = ": ";
-	//return GetName() + TWO_DOTS +
-	//	CIRCLE_AREA + std::to_string(GetArea()) + COMMA +
-	//	CIRCLE_PERIMETER + std::to_string(GetPerimeter());
-
-	//const std::string CIRCLE_AREA = "S=";
-	//const std::string CIRCLE_PERIMETER = "P=";
-	const std::string WHITESPACE = " ";
-	//const std::string COMMA = ", ";
-	//const std::string TWO_DOTS = ": ";
 	return GetName() + WHITESPACE + std::to_string(m_circle->getRadius())
 		+ WHITESPACE + std::to_string(m_circle->getPosition().x) 
 		+ WHITESPACE + std::to_string(m_circle->getPosition().y)
@@ -108,3 +92,18 @@ std::vector<IShapeDecorator*> CCircleDecorator::Ungroup()
 //{
 //	m_circle->setOutlineColor(colour);
 //}
+
+	//const std::string CIRCLE_AREA = "S=";
+	//const std::string CIRCLE_PERIMETER = "P=";
+	//const std::string WHITESPACE = " ";
+	//const std::string COMMA = ", ";
+	//const std::string TWO_DOTS = ": ";
+	//return GetName() + TWO_DOTS +
+	//	CIRCLE_AREA + std::to_string(GetArea()) + COMMA +
+	//	CIRCLE_PERIMETER + std::to_string(GetPerimeter());
+
+	//const std::string CIRCLE_AREA = "S=";
+	//const std::string CIRCLE_PERIMETER = "P=";
+//const std::string WHITESPACE = " ";
+//const std::string COMMA = ", ";
+//const std::string TWO_DOTS = ": ";

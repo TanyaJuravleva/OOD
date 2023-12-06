@@ -239,5 +239,8 @@
     <ClInclude Include="CBuilderGroup.h">
       <Filter>Файлы заголовков\BuilderShapeClass</Filter>
     </ClInclude>
+    <ClInclude Include="CONSTS.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

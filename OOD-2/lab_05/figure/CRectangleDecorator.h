@@ -23,7 +23,6 @@ public:
 	bool isGroup() const override;
 	std::vector<IShapeDecorator*> Ungroup() override;
 
-	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
 	{
 		if (auto* v = dynamic_cast<Visitor<const CRectangleDecorator>*>(&visitor))

@@ -1,17 +1,16 @@
 #pragma once
 #include "ISaveStrategy.h"
 #include <fstream>
+#include "CONSTS.h"
 
 class CSaveInTxtFile : public ISaveStrategy
 {
 public:
 	void SaveInFile(std::vector<IShapeDecorator*>& arrayFigures) override
 	{
-		//std::string fileName = "figures.txt";
-		std::ofstream fileOut("figures.txt");
+		std::ofstream fileOut(NAME_TXT_FILE);
 		for (int i = 0; i < arrayFigures.size(); i++)
 		{
-			//std::string m = arrayFigures[i]->ToString();
 			fileOut << arrayFigures[i]->ToString() << std::endl;
 		}
 		fileOut.close();

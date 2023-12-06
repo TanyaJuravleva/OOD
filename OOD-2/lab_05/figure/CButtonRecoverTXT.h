@@ -21,7 +21,7 @@ public:
 	void Draw(sf::RenderWindow& window) override
 	{
 		sf::Texture picture;
-		std::string name = "./image/" + m_namePicture;
+		std::string name = SOURCE_IMAGES + m_namePicture;
 		picture.loadFromFile(name);
 		button.setTexture(picture);
 		button.setPosition(m_x, m_y);
@@ -33,8 +33,6 @@ public:
 		{
 			CRecoverFromTxt p;
 			m_shapes = p.Execute();
-			//Saver* p = new Saver(new CSaveInBinaryFile);
-			//p->SaveInFile(m_shapes);
 		}
 	}
 	bool isClick(sf::Vector2i pos)

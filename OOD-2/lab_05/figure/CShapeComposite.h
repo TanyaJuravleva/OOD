@@ -18,7 +18,6 @@ public:
 	std::vector<IShapeDecorator*> Ungroup() override;
 	void Add(IShapeDecorator* shape);
 
-	//void SetFillColour(sf::Color colour) override;
 	void SetFillColor(IShapeVisitor& visitor) const override
 	{
 		if (auto* v = dynamic_cast<Visitor<const CShapeComposite>*>(&visitor))

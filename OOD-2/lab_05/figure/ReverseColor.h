@@ -1,32 +1,18 @@
 #pragma once
-//#include <string>
-//#include <SFML/Window.hpp>
-//#include <SFML/Graphics.hpp>
-//#include <SFML/System.hpp>
+#include "CCreateFigureTemplate.h"
+#include "CONSTS.h"
+#include <fstream>
 
-std::string GetColorName(sf::Color color)
-{
-	if (color == sf::Color::Blue)
-		return "blue";
-	if (color == sf::Color::Red)
-		return "red";
-	if (color == sf::Color::Yellow)
-		return "yellow";
-	if (color == sf::Color::Green)
-		return "green";
-	if (color == sf::Color::White)
-		return "white";
-}
 sf::Color GetColorByName(std::string color)
 {
-	if (color == "blue")
+	if (color == NAME_BLUE)
 		return sf::Color::Blue;
-	if (color == "red")
+	if (color == NAME_RED)
 		return sf::Color::Red;
-	if (color == "red")
+	if (color == NAME_YELLOW)
 		return sf::Color::Yellow;
-	if (color == "green")
+	if (color == NAME_GREEN)
 		return sf::Color::Green;
-	if (color == "white")
+	if (color == NAME_WHITE)
 		return sf::Color::White;
 }

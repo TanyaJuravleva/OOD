@@ -40,12 +40,12 @@ void CShapeComposite::Draw(sf::RenderWindow& window) const
 
 std::string CShapeComposite::ToString() const
 {
-	std::string strShapes = "GROUP\n";
+	std::string strShapes = START_GROUP + WHITESPACE;
 	for (int i = 0; i < m_shapes.size(); i++)
 	{
-		strShapes += m_shapes[i]->ToString() + "\n";
+		strShapes += m_shapes[i]->ToString() + " ";
 	}
-	strShapes += "ENDGROUP\n";
+	strShapes += WHITESPACE + END_GROUP;
 	return strShapes;
 }
 

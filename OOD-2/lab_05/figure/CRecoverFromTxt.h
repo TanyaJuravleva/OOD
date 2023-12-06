@@ -8,76 +8,26 @@
 #include "CCreateFigureTemplate.h"
 #include "IBuilderShape.h"
 #include <fstream>
-std::string GetColorName3(sf::Color color)
-{
-	if (color == sf::Color::Blue)
-		return "blue";
-	if (color == sf::Color::Red)
-		return "red";
-	if (color == sf::Color::Yellow)
-		return "yellow";
-	if (color == sf::Color::Green)
-		return "green";
-	if (color == sf::Color::White)
-		return "white";
-}
-sf::Color GetColorByName3(std::string color)
-{
-	if (color == "blue")
-		return sf::Color::Blue;
-	if (color == "red")
-		return sf::Color::Red;
-	if (color == "red")
-		return sf::Color::Yellow;
-	if (color == "green")
-		return sf::Color::Green;
-	if (color == "white")
-		return sf::Color::White;
-}
+#include "ReverseColor.h"
+#include "CONSTS.h"
 
 class CRecoverFromTxt : public IRecoverTemplate
 {
 	void ReadFile() override
 	{
-		
-		IShapeDecorator* shape;
-		std::string figureName = "jhk";
-		std::ifstream inp("figures.txt");
-		float recWidth, recHeight;
-		float vertex1_x, vertex1_y,
-			vertex2_x, vertex2_y,
-			vertex3_x, vertex3_y;
-		float radius;
-		float posX, posY;
-		std::string colorFill, colorOutline;
-		float thick;
+		IShapeDecorator* shape = nullptr;
+		std::string figureName;
+		std::ifstream inp(NAME_TXT_FILE);
 		CCreateFigureTemplate creatorShape;
-		IBuilderShape* builderShape;
 		while (inp >> figureName)
 		{
-			if (figureName == "RECTANGLE")
+			shape = creatorShape.GetShape(figureName, inp);
+			if (figureName == START_GROUP)
 			{
-				inp >> recWidth >> recHeight >> posX >> posY >> colorFill >> colorOutline >> thick;
-				builderShape = new CBuilderRectangle(recWidth, recHeight);
-				shape = creatorShape.CreateFigure(builderShape, posX, posY, GetColorByName3(colorFill), GetColorByName3(colorOutline), thick);
-				arr.push_back(shape);
+				CBuilderGroup* builderShape = new CBuilderGroup();
+				shape = creatorShape.CreateGroup(builderShape, inp);
 			}
-
-			if (figureName == "TRIANGLE")
-			{
-				inp >> vertex1_x >> vertex1_y >> vertex2_x >> vertex2_y >> vertex3_x >> vertex3_y >> posX >> posY >> colorFill >> colorOutline >> thick;
-				IBuilderShape* builderShape = new CBuilderTriangele(vertex1_x, vertex1_y, vertex2_x, vertex2_y, vertex3_x, vertex3_y);
-				shape = creatorShape.CreateFigure(builderShape, posX, posY, GetColorByName3(colorFill), GetColorByName3(colorOutline), thick);
-				arr.push_back(shape);
-			}
-
-			if (figureName == "CIRCLE")
-			{
-				inp >> radius >> posX >> posY >> colorFill >> colorOutline >> thick;
-				IBuilderShape* builderShape = new CBuilderCirlce(radius);
-				shape = creatorShape.CreateFigure(builderShape, posX, posY, GetColorByName3(colorFill), GetColorByName3(colorOutline), thick);
-				arr.push_back(shape);
-			}
+			arr.push_back(shape);
 		}
 		inp.close();
 	}

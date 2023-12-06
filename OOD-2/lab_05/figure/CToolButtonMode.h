@@ -16,7 +16,7 @@ public:
 	void Draw(sf::RenderWindow& window) override
 	{
 		sf::Texture picture;
-		std::string lname = "./image/" + m_namePicture;
+		std::string lname = SOURCE_IMAGES + m_namePicture;
 		picture.loadFromFile(lname);
 		button.setTexture(picture);
 		button.setPosition(m_x, m_y);
